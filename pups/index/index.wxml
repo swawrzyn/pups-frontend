@@ -36,7 +36,19 @@
                     <view>实时搜索文本</view>
                 </view>
             </navigator>
-        </view>
-<view class="container">
+</view>
 
+<view class="filter-bar">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"><view class="filter-button" hover-class="filter-button-hover">Location ▼</view></picker>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"><view class="filter-button" hover-class="filter-button-hover">Price ▼</view></picker>
+    <picker mode="date" value="{{date}}" start="2018-11-19" end="2018-12-31" bindchange="bindDateChange"><view class="filter-button" hover-class="filter-button-hover">Date ▼</view></picker>
+  </view>
+
+<view class="container">
+<view wx:for="{{pups}}" wx:for-item="pup">
+    <view class="pup-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{pup.image}}')">
+    <text class="card-title">{{pup.name}}</text>
+    <navigator url="" class="card-link"></navigator>
+    </view>
+  </view>
 </view>

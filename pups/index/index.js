@@ -35,6 +35,16 @@ Page({
     })
   },
   onLoad: function () {
+
+    const page = this
+    wx.request({
+      url: "http://pups-wx.herokuapp.com/api/v1/pups",
+      method: 'GET',
+      success(res) {
+        page.setData({ pups: res.data.pups });
+      }
+    })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
