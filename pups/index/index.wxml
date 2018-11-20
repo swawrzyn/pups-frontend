@@ -53,11 +53,13 @@
     </view>
     <view class="card-footer">
       <view class="stars">
-        ****
+        <block wx:for="{{pup.avg_rating}}">
+          ★
+        </block>
       </view>
       <view class="price">${{pup.price}}/week</view>
     </view>
-    <navigator url="/pups/show/show?id={{restaurant.id}}" class="card-link"></navigator>
+    <navigator url="/pups/show/show?id={{pup.id}}" class="card-link"></navigator>
     </view>
   </view>
 </view>

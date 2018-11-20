@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     const page = this
     wx.request({
-      url: `http://localhost:3000/api/v1/restaurants/${options.id}`,
+      url: `http://pups-wx.herokuapp.com/api/v1/pups/${options.id}`,
       method: 'GET',
       success(res) {
         console.log(res)

@@ -2,7 +2,6 @@
   "pages": [
     "pups/index/index",
     "pages/logs/logs",
-    "pups/show",
     "pups/show/show"
   ],
   "window": {
