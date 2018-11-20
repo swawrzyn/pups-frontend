@@ -1,12 +1,14 @@
 {
-  "pages":[
+  "pages": [
     "pups/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pups/show",
+    "pups/show/show"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Pups",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

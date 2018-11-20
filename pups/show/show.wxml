@@ -1,0 +1,5 @@
+<!--pups/show/show.wxml-->
+<text>{{pup.name}}</text>
+<text>{{pup.location}}</text>
+<text>${{pup.price}}/week</text>
+<text>{{pup.avg_rating}}</text>
