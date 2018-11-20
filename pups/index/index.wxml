@@ -57,7 +57,7 @@
           ★
         </block>
       </view>
-      <view class="price">${{pup.price}}/week</view>
+      <view class="price">${{pup.price}}/day</view>
     </view>
     <navigator url="/pups/show/show?id={{pup.id}}" class="card-link"></navigator>
     </view>

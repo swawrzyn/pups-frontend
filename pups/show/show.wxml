@@ -12,23 +12,53 @@
     </view>
   <view class="details right">
     <text class="price">${{pup.price}}</text>
-    <text class="per-week">per week</text>
+    <text class="per-week">per day</text>
   </view>
 </view>
   <view class="calendar">
   <view wx:if="{{date_error}}">
     <text>Date is not available. Please select again.</text>
   </view>
-  <view wx:if="{{!start_date}}">
-    <picker class="weui-btn" mode="date" value="{{date}}" start="{{today}}" end="2019-11-15" bindchange="bindStartDateChange">
-    <button type="default">Select Start Date</button>
+  
+    <picker class="weui-btn" mode="date" value="{{start_date}}" start="{{today}}" end="2019-11-15" bindchange="bindStartDateChange">
+    <view wx:if="{{!start_date}}">
+      <button type="default">Select Start Date</button>
+    </view>
+    <view wx:elif="{{start_date}}">
+      <button type="default">{{start_date_string}}</button>
+    </view>
     </picker>
+  
+  <picker class="weui-btn" mode="date" value="{{start_date_string}}" start="{{start_date_string}}" end="2019-11-15" bindchange="bindEndDateChange">
+    <view wx:if="{{!end_date}}">
+      <button type="default">Select End Date</button>
+    </view>
+    <view wx:elif="{{start_date}}">
+      <button type="default">{{end_date_string}}</button>
+    </view>
+    </picker>
+</view>
+
+  <view wx:if="{{total_cost}}" class="cost-box"><text class="cost">Total cost: ${{total_cost}}</text></view>
+
+  <view class="reviews-container">
+    <text class="review-title">Reviews</text>
+    <block wx:for="{{pup.reviews}}" wx:for-item="review">
+      <view class="review-box">
+        <view class="review-body">
+          <text class="review-content">{{review.content}}</text>
+        </view>
+        <view class="review-footer">
+          <view class="review-avatar">avatar</view>
+          <view class="review-stars">
+          <block wx:for="{{review.rating}}">
+            ★
+          </block>
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
-  <view wx:elif="{{start_date}}">
-    <button type="default">{{start_date}}</button>
-  </view>
-  <picker class="weui-btn" mode="date" value="{{start_date}}" start="{{start_date}}" end="2019-11-15" bindchange="bindEndDateChange">
-    <button type="default">Select End Date</button>
-    </picker></view>
+
 </view>
 
