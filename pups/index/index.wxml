@@ -46,9 +46,18 @@
 
 <view class="container">
 <view wx:for="{{pups}}" wx:for-item="pup">
-    <view class="pup-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{pup.image}}')">
-    <text class="card-title">{{pup.name}}</text>
-    <navigator url="" class="card-link"></navigator>
+  <view class="pup-card">
+    <view class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{pup.image}}')">
+      <text class="card-title">{{pup.name}}</text>
+      <text class="card-address">{{pup.location}}</text>
+    </view>
+    <view class="card-footer">
+      <view class="stars">
+        ****
+      </view>
+      <view class="price">${{pup.price}}/week</view>
+    </view>
+    <navigator url="/pups/show/show?id={{restaurant.id}}" class="card-link"></navigator>
     </view>
   </view>
 </view>
