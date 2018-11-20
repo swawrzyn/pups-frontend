@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.0",
-	"appid": "wxe0a23ca32796c577",
+	"appid": "wxfb2d864834e64b71",
 	"projectname": "%2Fhome%2Fstefan%2Fcode%2Fswawrzyn%2Fpups-frontend",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -46,10 +46,11 @@
 					"query": ""
 				},
 				{
-					"id": 1,
-					"name": "show pup",
-					"pathName": "pups/show/show",
-					"query": "id=11"
+					"id": -1,
+					"name": "show user",
+					"pathName": "users/show/show"
+					"name": "show",
+					"pathName": "pups/show/show"
 				}
 			]
 		}

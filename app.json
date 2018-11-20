@@ -2,7 +2,8 @@
   "pages": [
     "pups/index/index",
     "pages/logs/logs",
-    "pups/show/show"
+    "pups/show/show",
+    "users/show/show"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,10 +11,16 @@
     "navigationBarTitleText": "Pups",
     "navigationBarTextStyle": "black"
   },
-  "plugins": {
-    "calendar": {
-      "version": "1.1.3",
-      "provider": "wx92c68dae5a8bb046"
-    }
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pups/index/index",
+        "text": "HOME"
+      },
+      {
+        "pagePath": "users/show/show",
+        "text": "USER"
+      }
+    ]
   }
 }
