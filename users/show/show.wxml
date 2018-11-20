@@ -1,0 +1,58 @@
+<!--users/show/show.wxml-->
+<view>information</view>
+<!--index.wxml-->
+<view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">Your Bookings</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">Your Pups</view>
+</view>
+   
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <!-- Bookings List -->
+    <swiper-item>
+      <block wx:for="{{user.bookings}}" wx:for-item="booking">
+        <view class="card">
+          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{booking.pup.image}}');">
+            <view class="card-category">{{booking.pup.name}}</view>
+            <view class="card-description">
+              <text>{{booking.pup.location}}</text>
+            </view>
+          </view>
+          <view class="card-footer">
+            <view class="details">
+              <text class="price">${{booking.pup.price}}</text>
+              <text class="per-week">/week</text>
+            </view>
+            <view class="pup-rating">
+              <block wx:for="{{booking.pup.avg_rating}}">
+                ★
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </swiper-item>
+    <!-- Pups List -->
+    <swiper-item>
+     <block wx:for="{{user.pups}}" wx:for-item="pup">
+        <view class="card">
+          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image}}');">
+            <view class="card-category">{{pup.name}}</view>
+            <view class="card-description">
+              <text>{{pup.location}}</text>
+            </view>
+          </view>
+          <view class="card-footer">
+            <view class="details">
+              <text class="price">${{pup.price}}</text>
+              <text class="per-week">/week</text>
+            </view>
+            <view class="pup-rating">
+              <block wx:for="{{pup.avg_rating}}">
+                ★
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </swiper-item>
+</swiper>
