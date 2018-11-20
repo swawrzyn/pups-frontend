@@ -1,11 +1,13 @@
-// pups/show/show.js
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
+    today: Date.today,
+    start_date: "",
+    date_error: false
   },
 
   /**
@@ -18,7 +20,10 @@ Page({
       method: 'GET',
       success(res) {
         console.log(res)
-        page.setData({ pup: res.data });
+        page.setData({ 
+          pup: res.data,
+          unavailable_dates: res.data.unavailable_dates.map (date => new Date(date).getTime())
+        });
       }
     })
   },
@@ -34,7 +39,6 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
   },
 
   /**
@@ -70,5 +74,45 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  bindStartDateChange: function (res) {
+    this.setData({
+      start_date: new Date(res.detail.value).toDateString()
+    });
+  },
+  bindEndDateChange: function (res) {
+    this.setData({
+      end_date: new Date(res.detail.value)
+    });
+    console.log("end date set to: " + this.data.end_date);
+    console.log(this.data.unavailable_dates);
+    let sd = this.data.start_date;
+    let ed = this.data.end_date;
+    console.log(sd);
+    console.log(ed);
+    let working = true;
+    console.log("Working on it...");
+    while (working) {
+      if (this.data.unavailable_dates.includes(ed.getTime())) {
+        this.setData({
+          date_error: true,
+          start_date: ""
+        });
+        console.log("it's true!!!");
+        break;
+      } else {
+        ed.setDate(ed.getDate() - 1);
+        console.log("Date is now: " + ed);
+        if (ed.getTime() < new Date(sd).getTime()) {
+          console.log("All clear!");
+          this.setData({
+            date_error: false
+          });
+          working = false;
+        }
+      }
+    }
+    console.log("leaving...")
   }
 })

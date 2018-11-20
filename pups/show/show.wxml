@@ -1,5 +1,3 @@
-
-
 <view class="container">
   <view class="big-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{pup.image}}')"></view>
   <view class="pup-details">
@@ -17,7 +15,20 @@
     <text class="per-week">per week</text>
   </view>
 </view>
-  <view class="calendar"></view>
-  <view class="reviews"></view>
+  <view class="calendar">
+  <view wx:if="{{date_error}}">
+    <text>Date is not available. Please select again.</text>
+  </view>
+  <view wx:if="{{!start_date}}">
+    <picker class="weui-btn" mode="date" value="{{date}}" start="{{today}}" end="2019-11-15" bindchange="bindStartDateChange">
+    <button type="default">Select Start Date</button>
+    </picker>
+  </view>
+  <view wx:elif="{{start_date}}">
+    <button type="default">{{start_date}}</button>
+  </view>
+  <picker class="weui-btn" mode="date" value="{{start_date}}" start="{{start_date}}" end="2019-11-15" bindchange="bindEndDateChange">
+    <button type="default">Select End Date</button>
+    </picker></view>
 </view>
 
