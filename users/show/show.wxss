@@ -19,6 +19,18 @@
   color: black;
 	border-bottom: 2rpx solid black;
 }
+.user-box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.user-avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin: 0 25rpx;
+}
  
 .swiper-box { 
   display: block; 

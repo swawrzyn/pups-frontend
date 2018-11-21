@@ -34,16 +34,7 @@ Page({
     })
   },
   onLoad: function () {
-
-    const page = this
-    wx.request({
-      url: "http://pups-wx.herokuapp.com/api/v1/pups",
-      method: 'GET',
-      success(res) {
-        page.setData({ pups: res.data.pups });
-      }
-    })
-
+    this.fetchPups();
   //   if (app.globalData.userInfo) {
   //     this.setData({
   //       userInfo: app.globalData.userInfo,
@@ -70,6 +61,19 @@ Page({
   //       }
   //     })
   //   }
+  },
+  onShow: function () {
+    this.fetchPups();
+  },
+  fetchPups: function () {
+    const page = this
+    wx.request({
+      url: "http://pups-wx.herokuapp.com/api/v1/pups",
+      method: 'GET',
+      success(res) {
+        page.setData({ pups: res.data.pups });
+      }
+    });
   },
   getUserInfo: function(e) {
     console.log(e)
