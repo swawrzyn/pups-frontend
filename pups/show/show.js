@@ -83,99 +83,11 @@ Page({
 
   },
 
-  checkDates: function(start, end) {
-    if (start === "" || end === "") {
-      return false;
-    }
-    return !(start.getTime() <= end.getTime());
-  },
-
-  showInvalidDateModal: function (date) {
-    let content = 'These dates are invalid, please pick again.';
-    let page = this;
-    if (date.getTime() < new Date().getTime()) {
-      content = 'A date you picked is before today, please pick again.'
-    }
-    wx.showModal({
-      content: content,
-      showCancel: false,
-      success: function (res) {
-        if (res.confirm) {
-          page.setData({
-            start_date: "",
-            start_date_string: "",
-            end_date: "",
-            end_date_string: "",
-            total_cost: 0
-          });
-        }
-      }
+  toNewBooking: function () {
+    let app = getApp();
+    app.globalData.pup = this.data.pup;
+    wx.navigateTo({
+      url: "../../bookings/new/new"
     });
-  },
-
-  computePrice: function (start, end) {
-    const date_difference = end - start;
-    return (date_difference / (60 * 60 * 24 * 1000)) * this.data.pup.price;
-  },
-
-  bindStartDateChange: function (res) {
-    this.setData({
-      start_date: new Date(res.detail.value),
-      start_date_string: res.detail.value
-    });
-    if (this.checkDates(this.data.start_date, this.data.end_date)) {
-      this.showInvalidDateModal(this.data.start_date);
-    }
-  },
-
-  bindEndDateChange: function (res) {
-    console.log("changing end date to: " + res.detail.value);
-    this.setData({
-      end_date: new Date(res.detail.value),
-      end_date_string: res.detail.value
-    });
-
-    if (this.checkDates(this.data.start_date, this.data.end_date)) {
-      this.showInvalidDateModal(this.data.end_date);
-    }
-    let sd = new Date(this.data.start_date);
-    let ed = new Date(this.data.end_date);
-    let page = this;
-    console.log(sd);
-    console.log(ed);
-    let working = true;
-    console.log("Working on it...");
-    while (working) {
-      if (this.data.unavailable_dates.includes(ed.getTime())) {
-        wx.showModal({
-          content: 'These dates are unavailable, please pick again.',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              page.setData({
-                start_date: "",
-                start_date_string: "",
-                end_date: "",
-                end_date_string: ""
-              });
-            }
-          }
-        });
-        console.log("it's true!!!");
-        break;
-      } else {
-        ed.setDate(ed.getDate() - 1);
-        console.log("Date is now: " + ed);
-        if (ed.getTime() < sd.getTime()) {
-          console.log("All clear!");
-          
-          this.setData({
-            date_error: false,
-            total_cost: this.computePrice(page.data.start_date, page.data.end_date)
-          });
-          working = false;
-        }
-      }
-    }
   }
 })

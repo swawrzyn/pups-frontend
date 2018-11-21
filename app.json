@@ -2,7 +2,8 @@
   "pages": [
     "pups/index/index",
     "pages/logs/logs",
-    "pups/show/show"
+    "pups/show/show",
+    "bookings/new/new"
   ],
   "window": {
     "backgroundTextStyle": "light",
