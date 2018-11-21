@@ -2,13 +2,14 @@
 Page({
   userInput: function (e) {
     //...
-    console.log(e.detail.value);
+    const app = getApp();
+    console.log(app.globalData.userId);
     let pup = e.detail.value;
-    pup["user_id"] = 10;
+    pup["user_id"] = app.globalData.userId;
 
     // Get api data
     wx.request({
-      url: `http://localhost:3000/api/v1/pups`,
+      url: `http://pups-wx.herokuapp.com/api/v1/pups`,
       method: 'POST',
       data: pup,
       success() {

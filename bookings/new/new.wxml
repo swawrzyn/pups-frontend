@@ -46,7 +46,13 @@
       <text class="cost">Total cost: ${{total_cost}}</text>
     </view>
     <view wx:if="{{total_cost}}" class="submit-button">
-      <button type="primary" ontap="submitBooking">Submit Booking</button>
+      <view wx:if="{{!userInfo}}">
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Please Login</button>
+      </view>
+      <view wx:elif="{{userInfo}}">
+        <button type="primary" ontap="submitBooking">Submit Booking</button>
+      </view>
+      
     </view>
 </view>
 
