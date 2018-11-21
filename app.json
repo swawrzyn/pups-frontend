@@ -1,9 +1,7 @@
 {
   "pages": [
-    "pups/index/index",
-    "pages/logs/logs",
-    "pups/show",
-    "pups/show/show"
+    "pages/index/index",
+    "pages/show/show"
   ],
   "window": {
     "backgroundTextStyle": "light",

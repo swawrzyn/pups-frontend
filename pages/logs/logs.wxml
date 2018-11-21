@@ -1,2 +1,12 @@
 <!--pages/logs/logs.wxml-->
-<text>pages/logs/logs.wxml</text>
+<!--pages/logs/logs.wxml-->
+<view class="userInfor">
+  <view class="userAvatar">
+  <open-data type="userAvatarUrl" ></open-data>
+  </view>
+<open-data type="userNickName"></open-data>
+  <view class="btn">
+  <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">login</button>
+  </view>
+</view>
+

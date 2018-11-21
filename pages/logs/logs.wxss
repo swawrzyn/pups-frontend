@@ -1,1 +1,14 @@
 /* pages/logs/logs.wxss */
+.userInfor {
+  justify-items: center;
+}
+.userAvatar {
+border-radius: 50%;
+width: 100px;
+height: 100px;
+overflow: hidden;
+justify-items: center;
+}
+.btn {
+  width: 200px;
+}

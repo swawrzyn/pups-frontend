@@ -13,8 +13,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.0",
-	"appid": "wxe0a23ca32796c577",
-	"projectname": "%2Fhome%2Fstefan%2Fcode%2Fswawrzyn%2Fpups-frontend",
+	"appid": "wxe4243628d52f93d8",
+	"projectname": "pups",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -40,9 +40,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "index",
-					"pathName": "pups/index/index"
+					"pathName": "index/index",
+					"query": ""
 				}
 			]
 		}
