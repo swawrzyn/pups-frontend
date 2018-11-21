@@ -19,15 +19,13 @@
               <text>{{booking.pup.location}}</text>
             </view>
           </view>
-          <view class="card-footer">
-            <view class="details">
-              <text class="price">${{booking.pup.price}}</text>
-              <text class="per-week">/week</text>
-            </view>
-            <view class="pup-rating">
-              <block wx:for="{{booking.pup.avg_rating}}">
-                ★
-              </block>
+          <view class="details">
+            <text>{{booking.time_start}} - {{booking.time_end}}
+            </text>
+            <view class="checkbox">
+              <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
+              <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
+              <view wx:elif="{{booking.accepted === nil}}"style="color:white;">?</view>
             </view>
           </view>
         </view>
@@ -43,17 +41,22 @@
               <text>{{pup.location}}</text>
             </view>
           </view>
-          <view class="card-footer">
-            <view class="details">
-              <text class="price">${{pup.price}}</text>
-              <text class="per-week">/week</text>
-            </view>
-            <view class="pup-rating">
-              <block wx:for="{{pup.avg_rating}}">
-                ★
-              </block>
-            </view>
+          <view class="card-category">{{pup.name}}</view>
+          <view class="card-description">
+            <text>{{pup.location}}</text>
           </view>
+          <block wx:for="{{pup.bookings}}" wx:for-item="booking">
+            <view class="pupdetails">
+              <text>{{booking.time_start}} - {{booking.time_end}}
+              </text>
+              <view class="checkbox">
+                <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
+                <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
+                <view wx:elif="{{booking.accepted === null}}"style="color:blue;">?</view>
+              </view>
+            </view>
+          </block> 
+          
         </view>
       </block>
     </swiper-item>

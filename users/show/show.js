@@ -29,9 +29,25 @@ Page({
       url: "http://pups-wx.herokuapp.com/api/v1/users/20",
       method: 'GET',
       success(res) {
-        page.setData({ user: res.data.user });
-      }
+        let user = res.data.user
+        user.bookings = user.bookings.map( bk => {
+          bk.time_start = bk.time_start.substr(0, 10)
+          bk.time_end = bk.time_end.substr(0, 10)
+          return bk
+        })
+        user.pups.map(pup => {
+          pup.bookings = pup.bookings.map( booking => {
+            booking.time_start = booking.time_start.substr(0, 10)
+            booking.time_end = booking.time_end.substr(0, 10)
+            return booking
+          }) 
+        })
+        
+        page.setData({ user: user });
+      },
+      
     })
+
   },
   // 滑动切换tab
   bindChange: function (e) {
@@ -40,6 +56,7 @@ Page({
     that.setData({ currentTab: e.detail.current });
 
   },
+
   // 点击tab切换
   swichNav: function (e) {
     var that = this;
