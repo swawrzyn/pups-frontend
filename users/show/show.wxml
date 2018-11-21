@@ -1,5 +1,7 @@
 <!--users/show/show.wxml-->
-<view>information</view>
+  <block wx:for="{{users}}" wx:for-item="user">
+  <view>{{user.open_id}}</view>
+  </block>
 <!--index.wxml-->
 <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">Your Bookings</view>

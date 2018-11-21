@@ -3,6 +3,7 @@
     "pups/index/index",
     "pages/logs/logs",
     "pups/show/show",
+    "pups/new/new",
     "bookings/new/new",
     "users/show/show"
   ],
