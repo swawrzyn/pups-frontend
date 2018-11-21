@@ -1,11 +1,20 @@
-// pups/show/show.js
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    today: Date.today,
+    start_date: "",
+    end_date: "",
+    total_cost: 0,
+    date_error: false
+  },
 
+  date_string: function(date) {
+    console.log(date.toDateString);
+    return date.toDateString();
   },
 
   /**
@@ -14,11 +23,14 @@ Page({
   onLoad: function (options) {
     const page = this
     wx.request({
-      url: `http://localhost:3000/api/v1/restaurants/${options.id}`,
+      url: `http://pups-wx.herokuapp.com/api/v1/pups/${options.id}`,
       method: 'GET',
       success(res) {
         console.log(res)
-        page.setData({ pup: res.data });
+        page.setData({ 
+          pup: res.data,
+          unavailable_dates: res.data.unavailable_dates.map (date => new Date(date).getTime())
+        });
       }
     })
   },
@@ -34,7 +46,6 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
   },
 
   /**
@@ -70,5 +81,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  toNewBooking: function () {
+    let app = getApp();
+    app.globalData.pup = this.data.pup;
+    wx.navigateTo({
+      url: "../../bookings/new/new"
+    });
   }
 })

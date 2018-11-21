@@ -1,1 +1,166 @@
-/* pups/show/show.wxss */
+.big-image {
+  height: 250px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90vw;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 50rpx;
+}
+
+.pup-details {
+  height: 550rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  margin-top: 20rpx;
+  box-shadow: 0px 4px 8px #c1c1c1;
+}
+
+.pup-details .details {
+  width: 100%;
+  height: 300rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pup-details .details .left {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 25rpx;
+}
+
+.pup-details .details .right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 25rpx;
+}
+
+.pup-details .details .left .pup-name {
+  font-size: 56rpx;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.pup-details .details .left .pup-address {
+  font-size: 36rpx;
+  font-style: italic;
+}
+
+.pup-details .details .right .price {
+  font-size: 56rpx;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.pup-details .details .right .per-week {
+  font-size: 24rpx;
+  font-style: italic;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+.description-container {
+  height: 200rpx;
+  width: 100%;
+}
+
+.description-container .description-content {
+  padding: 25rpx;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.booking-container {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25rpx 0;
+}
+
+.booking-container .booking-button {
+  width: 50%;
+}
+
+.review-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 25rpx;
+}
+
+.review-title {
+  font-size: 75rpx;
+}
+
+.review-box {
+  width: 90vw;
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 8px #c1c1c1;
+}
+
+.review-box .review-body {
+  width: 100%;
+  height: 125rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.review-body .review-content {
+  margin-left: 25rpx;
+}
+
+.review-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75rpx;
+}
+
+.review-footer .review-avatar {
+  margin-left: 25rpx;
+}
+
+.review-footer .review-stars {
+  margin-right: 25rpx;
+}
+
+
+
+
+
+
+
+
+
