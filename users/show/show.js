@@ -1,4 +1,4 @@
-// users/show/show.js
+  // users/show/show.js
 Page({
 
   /**
@@ -82,6 +82,10 @@ Page({
       page.setData({ user: user });
           
       },
+      complete () {
+        wx.stopPullDownRefresh();
+        wx.hideNavigationBarLoading();
+      }
     });
   },
   getUserInfo: function (e) {
@@ -155,7 +159,9 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    wx.showNavigationBarLoading();
+    console.log("pulled down!");
+    this.fetchUserInfo();
   },
 
   /**

@@ -63,8 +63,8 @@ Page({
   //   }
   },
   onShow: function () {
-    this.fetchPups();
   },
+
   fetchPups: function () {
     const page = this
     wx.request({
@@ -72,9 +72,19 @@ Page({
       method: 'GET',
       success(res) {
         page.setData({ pups: res.data.pups });
+      },
+      complete () {
+        wx.stopPullDownRefresh();
+        wx.hideNavigationBarLoading();
       }
     });
   },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading();
+    console.log("pulled down!");
+    this.fetchPups();
+  },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
