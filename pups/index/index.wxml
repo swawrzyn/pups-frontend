@@ -37,6 +37,7 @@
                 </view>
             </navigator>
 </view>
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
 
 <view class="filter-bar">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"><view class="filter-button" hover-class="filter-button-hover">Location ▼</view></picker>
