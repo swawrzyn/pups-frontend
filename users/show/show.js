@@ -28,29 +28,6 @@ Page({
         });
       }
     });
-    const page = this
-    wx.request({
-      url: `http://pups-wx.herokuapp.com/api/v1/users/${this.data.userId}`,
-      method: 'GET',
-      success(res) {
-        let user = res.data.user
-        user.bookings = user.bookings.map( bk => {
-          bk.time_start = bk.time_start.substr(0, 10)
-          bk.time_end = bk.time_end.substr(0, 10)
-          return bk
-        })
-        user.pups.map(pup => {
-          pup.bookings = pup.bookings.map( booking => {
-            booking.time_start = booking.time_start.substr(0, 10)
-            booking.time_end = booking.time_end.substr(0, 10)
-            return booking
-          }) 
-        })
-        
-        page.setData({ user: user });
-      },
-    });
-
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -77,6 +54,35 @@ Page({
         }
       })
     }
+    this.fetchUserInfo();
+  },
+  fetchUserInfo: function () {
+    const page = this
+    wx.request({
+      url: `http://pups-wx.herokuapp.com/api/v1/users/${this.data.userId}`,
+      method: 'GET',
+      success(res) {
+        let user = res.data.user
+        if (user.bookings) {
+          user.bookings = user.bookings.map(bk => {
+            bk.time_start = bk.time_start.substr(0, 10)
+            bk.time_end = bk.time_end.substr(0, 10)
+            return bk
+          });
+        }
+        if (user.pups) {
+          user.pups.map(pup => {
+            pup.bookings = pup.bookings.map(booking => {
+              booking.time_start = booking.time_start.substr(0, 10)
+              booking.time_end = booking.time_end.substr(0, 10)
+              return booking
+            })
+          });
+        }
+      page.setData({ user: user });
+          
+      },
+    });
   },
   getUserInfo: function (e) {
     const app = getApp();
@@ -128,7 +134,7 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    this.fetchUserInfo();
   },
 
   /**
