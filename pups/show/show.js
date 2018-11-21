@@ -86,8 +86,9 @@ Page({
   toNewBooking: function () {
     let app = getApp();
     app.globalData.pup = this.data.pup;
+    app.globalData.unavailable_dates = this.data.unavailable_dates;
     wx.navigateTo({
-      url: "../../bookings/new/new"
+      url: "/bookings/new/new"
     });
   }
 })

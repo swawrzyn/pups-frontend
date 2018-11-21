@@ -23,7 +23,8 @@ Page({
   onLoad: function (options) {
     let app = getApp();
     this.setData({
-      pup: app.globalData.pup
+      pup: app.globalData.pup,
+      unavailable_dates: app.globalData.unavailable_dates
     });
 
   },
@@ -170,5 +171,38 @@ Page({
         }
       }
     }
+  },
+  submitBooking: function () {
+    let pup_id = this.data.pup.id;
+    let booking = { 
+      user_id: 20,
+      time_start: this.data.start_date,
+      time_end: this.data.end_date,
+      pup_id: pup_id
+    }
+
+    wx.request({
+      url: `http://localhost:3000/api/v1/pups/${pup_id}/bookings`,
+      method: 'POST',
+      data: booking,
+      success(res) {
+        // set data on index page and show
+        wx.showToast({
+          title: 'Booking made!',
+          duration: 3000,
+          success: function () {
+            
+            setTimeout(function () {
+              wx.switchTab({
+                url: '/users/show/show'
+              });
+            }, 3000);
+          }
+        });
+        // wx.switchTab({
+        //   url: '/users/show/show'
+        // });
+      }
+    })
   }
 })

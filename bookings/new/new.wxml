@@ -1,5 +1,25 @@
-<text>{{pup.name}}</text>
-<view class="calendar">
+<view class="container">
+  <view class="card">
+          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image}}');">
+            <view class="card-category">{{pup.name}}</view>
+            <view class="card-description">
+              <text>{{pup.location}}</text>
+            </view>
+          </view>
+          <view class="card-footer">
+            <view class="details">
+              <text class="price">${{pup.price}}</text>
+              <text class="per-week">/day</text>
+            </view>
+            <view class="pup-rating">
+              <block wx:for="{{pup.avg_rating}}">
+                ★
+              </block>
+            </view>
+          </view>
+        </view>
+  <view class="calendar-box">
+  <view class="calendar">
   <view wx:if="{{date_error}}">
     <text>Date is not available. Please select again.</text>
   </view>
@@ -21,6 +41,17 @@
       <button type="default">{{end_date_string}}</button>
     </view>
     </picker>
+  </view>
+    <view wx:if="{{total_cost}}" class="cost-box">
+      <text class="cost">Total cost: ${{total_cost}}</text>
+    </view>
+    <view wx:if="{{total_cost}}" class="submit-button">
+      <button type="primary" ontap="submitBooking">Submit Booking</button>
+    </view>
 </view>
 
-  <view wx:if="{{total_cost}}" class="cost-box"><text class="cost">Total cost: ${{total_cost}}</text></view>
+  
+      
+        
+        
+</view>
