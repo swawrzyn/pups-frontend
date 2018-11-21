@@ -1,0 +1,16 @@
+<!--pups/new/new.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section">
+      <view class="section__title">name</view>
+      <input name="input" placeholder="Your pup's name" />
+        <view class="section__title">location</view>
+      <input name="input" placeholder="Your pup's location" />
+        <view class="section__title">description</view>
+      <input name="input" placeholder="e.g." />
+        <view class="section__title">image</view>
+      <input name="input" placeholder="please input here" />
+        <view class="section__title">price perweek</view>
+      <input name="input" placeholder="e.g." />
+      <button class="submit-button" form-type="submit" >Submit</button>
+    </view>
+  </form>

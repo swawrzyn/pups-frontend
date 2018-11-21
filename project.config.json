@@ -18,7 +18,7 @@
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"isGameTourist": false,
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,11 +33,10 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -48,9 +47,13 @@
 				{
 					"id": -1,
 					"name": "show user",
-					"pathName": "users/show/show"
-					"name": "show",
-					"pathName": "pups/show/show"
+					"pathName": "users/show/show",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "new pup",
+					"pathName": "pups/new/new"
 				}
 			]
 		}
