@@ -115,6 +115,12 @@ Page({
 
   },
 
+  toNewPup: function () {
+    wx.navigateTo({
+      url: '/pups/new/new',
+    });
+  },
+
   // 点击tab切换
   swichNav: function (e) {
     var that = this;

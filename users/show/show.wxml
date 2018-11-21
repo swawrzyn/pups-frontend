@@ -58,7 +58,7 @@
             </block> 
           </view>
         </block>
-        <navigator url="/pups/new/new">Add new pup</navigator>
+        <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
       </swiper-item>
       <swiper-item></swiper-item>
   </swiper>
