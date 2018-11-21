@@ -5,7 +5,7 @@
   <input class="desc" name="description" placeholder="Enter a description" />
   <input class="desc" name="image" placeholder="Enter an image url" />
   <input class="desc" name="price" placeholder="Enter a price" />
-  <button class="btn-submit blue" formType="submit">SUBMIT</button>
+  <button type="primary" formType="submit">Submit</button>
 </form>
 </view>
 

@@ -106,3 +106,9 @@
   justify-content: center;
   align-items: center;
 }
+
+button {
+  width: 95vw;
+  margin: 25rpx auto;
+  font-weight: bold;
+}
