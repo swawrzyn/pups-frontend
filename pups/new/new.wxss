@@ -1,0 +1,22 @@
+/* pages/submit/submit.wxss */
+
+.form-fields {
+  margin:15px 8px;
+}
+.btn-submit {
+margin-bottom:8px;
+color:white;
+}
+.desc {
+  border: 2px solid rgb(240,240,240);
+  margin-bottom:15px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.blue {
+  background-color: rgb(34,123,156);
+}
+.red {
+  background-color:rgb(200,200,200);
+}
