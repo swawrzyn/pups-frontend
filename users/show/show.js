@@ -9,7 +9,6 @@ Page({
     winHeight: 0,
     // tab切换
     navbar: ['Your Bookings', 'Your Pups'],
-    currentTab: 0,
   },
   navbarTap: function (e) {
     this.setData({
@@ -132,25 +131,51 @@ Page({
     });
   },
 
-  handleDenyProduct: function (e) {
-    let pupIndex = e.currentTarget.dataset.pupindex
-    let user = this.data.user
+  popup: function (e) {
+    const page = this;
+    console.log(e)
+    const booking_id = e.currentTarget.id;
+    wx.showModal({
+      title: 'Accept or Reject',
+      showCancel: true,
+      cancelText: 'No',
+      cancelColor: 'green',
+      confirmText: 'Yes',
+      confirmColor: 'black',
+      success: function (res) {
+        if (res.confirm) {
+          const booking = {}
+          booking["accepted"] = true;
+          console.log(booking)
+          wx.request({
+            url: `http://pups-wx.herokuapp.com/api/v1/bookings/${booking_id}`,
+            method: 'PUT',
+            data: {
+              booking
+            },
+            success(res) {
+              page.fetchUserInfo();
+            },
+          });
+        } else if (res.cancel) {
+          const booking = {}
+          booking["accepted"] = false;
+          console.log(booking)
+          wx.request({
+            url: `http://pups-wx.herokuapp.com/api/v1/bookings/${booking_id}`,
+            method: 'PUT',
+            data: {
+              booking
+            },
+            success(res) {
+              page.fetchUserInfo();
+            },
+          });
+        }
 
-    user.pups.splice(pupIndex, 1)
-
-    this.setData({
-      user: user
-    })
-  },
-
-  handleAccepteProduct: function (e) {
-    let pupIndex = e.currentTarget.dataset.pupindex
-    let user = this.data.user
-
-    user.pups.splice(pupIndex, 1)
-
-    this.setData({
-      user: user
+      },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
 

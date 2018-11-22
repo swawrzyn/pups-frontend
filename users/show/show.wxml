@@ -33,9 +33,8 @@
   <!--Pup List-->
   <view hidden="{{currentTab!==1}}">
     <view class="pup-item" wx:for="{{user.pups}}" wx:for-item="pup">
-      <movable-area>
-      <movable-view out-of-bounds="true" direction="horizontal" x="{{pup.xmove}}" 
-inertia="true" data-productIndex="{{index}}" bindchange="handleMovableChange">
+      <!-- <movable-area>
+      <movable-view out-of-bounds="true" direction="horizontal" inertia="true" bindchange="handleMovableChange"> -->
         <view class="pupcard">
           <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image}}');">
             <view class="card-category">{{pup.name}}</view>
@@ -47,22 +46,22 @@ inertia="true" data-productIndex="{{index}}" bindchange="handleMovableChange">
           <view class="card-description">
             <text>{{pup.location}}</text>
           </view>
-          <block wx:for="{{pup.bookings}}" wx:for-item="booking">
-            <view class="pupdetails">
-              <text>{{booking.time_start}} - {{booking.time_end}}
+          <view class="booking" wx:for="{{pup.bookings}}" wx:for-item="booking">
+            <view id="{{booking.id}}" class="pupdetails" data-test="hello" bindtap="popup">
+              <text class="date">{{booking.time_start}} - {{booking.time_end}}
               </text>
               <view class="checkbox">
                 <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
-                <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
-                <view wx:elif="{{booking.accepted === null}}"style="color:blue;">?</view>
+                <view wx:elif="{{booking.accepted === false}}" style="color:red;">✘</view>
+                <view wx:elif="{{booking.accepted === null}}" style="color:blue;">?</view>
               </view>
             </view>
-          </block> 
+          </view> 
         </view>
-      </movable-view>
-      </movable-area>
-      <view class="accepte-btn" data-pupIndex="{{index}}" bindtap="handleAccepteProduct">Accepte</view>
-      <view class="deny-btn" data-pupIndex="{{index}}" bindtap="handleDenyProduct">Deny</view>
+      <!-- </movable-view>
+      </movable-area> -->
+      <!-- <view class="accepte-btn" data-pupIndex="{{index}}" bindtap="handleAccepteProduct">Accepte</view>
+      <view class="deny-btn" data-pupIndex="{{index}}" bindtap="handleDenyProduct">Deny</view> -->
       </view>
     <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
   </view>         
