@@ -23,7 +23,7 @@
           <view class="checkbox">
             <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
             <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
-            <view wx:elif="{{booking.accepted === nil}}"style="color:white;">?</view>
+            <view wx:elif="{{booking.accepted === null}}"style="color:blue;">?</view>
           </view>
         </view>
       </view>
@@ -61,7 +61,8 @@ inertia="true" data-productIndex="{{index}}" bindchange="handleMovableChange">
         </view>
       </movable-view>
       </movable-area>
-      <view class="delete-btn" data-pupIndex="{{index}}" bindtap="handleDeleteProduct">删除</view>
+      <view class="accepte-btn" data-pupIndex="{{index}}" bindtap="handleAccepteProduct">Accepte</view>
+      <view class="deny-btn" data-pupIndex="{{index}}" bindtap="handleDenyProduct">Deny</view>
       </view>
     <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
   </view>         
