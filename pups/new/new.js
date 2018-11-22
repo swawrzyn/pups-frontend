@@ -1,7 +1,8 @@
 // pups/new/new.js
 const app = getApp();
 const AV = require('../../utils/av-weapp-min.js');
-
+var QQMapWX = require('../libs/qqmap-wx-jssdk.js');
+var qqmapsdk;
 Page({
   userInput: function (e) {
     //...
@@ -29,16 +30,42 @@ Page({
    */
    data: {
      images: [],
-     imagesLength: 0
+     imagesLength: 0,
+        latitude: 23.099994,
+     longitude: 113.324520,
+     markers: [{
+       id: 1,
+       latitude: 23.099994,
+       longitude: 113.324520,
+       name: 'T.I.T 创意园'
+     }],
+     covers: [{
+       latitude: 23.099994,
+       longitude: 113.344520,
+       iconPath: '/image/location.png'
+     }, {
+       latitude: 23.099994,
+       longitude: 113.304520,
+       iconPath: '/image/location.png'
+     }],
+     address: ""
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
   },
 
+  search: function (e) {
+    let that = this
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({address: res.address})
+      }
+    })
+  },
+  
 //   /**
 //    * Lifecycle function--Called when page is initially rendered
 //    */
@@ -49,9 +76,9 @@ Page({
 //   /**
 //    * Lifecycle function--Called when page show
 //    */
-//   onShow: function () {
-
-//   },
+  // onShow: function () {
+  
+  // },
 
 //   /**
 //    * Lifecycle function--Called when page hide
