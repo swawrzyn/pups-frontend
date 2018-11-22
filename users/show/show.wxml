@@ -2,7 +2,7 @@
   
 <!--index.wxml-->
 <view class="user-box"><image class="user-avatar" src="{{userInfo.avatarUrl}}"></image><text>{{userInfo.nickName}}</text></view>
-<view wx:if="{{userInfo}}" class="user-container">
+<view wx:if="{{hasUserInfo}}" class="user-container">
   <view class="swiper-tab">
       <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">Your Bookings</view>
       <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">Your Pups</view>
@@ -62,7 +62,4 @@
       </swiper-item>
       <swiper-item></swiper-item>
   </swiper>
-</view>
-<view wx:elif="{{!userInfo}}" class="login-container">
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Please Login</button>
 </view>

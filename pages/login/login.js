@@ -1,4 +1,4 @@
-// pups/show.js
+// pages/login/login.js
 Page({
 
   /**
@@ -62,5 +62,27 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo: function (e) {
+    const app = getApp();
+    app.globalData.userInfo = e.detail.userInfo;
+
+    wx.showToast({
+      title: 'Please wait',
+      duration: 5000,
+      icon: 'loading',
+      success: function () {
+          setTimeout(function () {
+            wx.reLaunch({
+              url: '/users/show/show'
+            })
+          }, 5000);
+        }
+    });
+  },
+  goHome: function () {
+    wx.reLaunch({
+      url: '/pups/index/index'
+    });
   }
 })
