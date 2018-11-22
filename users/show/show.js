@@ -130,53 +130,51 @@ Page({
       url: '/pups/new/new',
     });
   },
-
   popup: function (e) {
     const page = this;
-    console.log(e)
     const booking_id = e.currentTarget.id;
-    wx.showModal({
-      title: 'Accept or Reject',
-      showCancel: true,
-      cancelText: 'No',
-      cancelColor: 'green',
-      confirmText: 'Yes',
-      confirmColor: 'black',
-      success: function (res) {
-        if (res.confirm) {
-          const booking = {}
-          booking["accepted"] = true;
-          console.log(booking)
-          wx.request({
-            url: `http://pups-wx.herokuapp.com/api/v1/bookings/${booking_id}`,
-            method: 'PUT',
-            data: {
-              booking
-            },
-            success(res) {
-              page.fetchUserInfo();
-            },
-          });
-        } else if (res.cancel) {
-          const booking = {}
-          booking["accepted"] = false;
-          console.log(booking)
-          wx.request({
-            url: `http://pups-wx.herokuapp.com/api/v1/bookings/${booking_id}`,
-            method: 'PUT',
-            data: {
-              booking
-            },
-            success(res) {
-              page.fetchUserInfo();
-            },
-          });
-        }
+    if (e.currentTarget.dataset.accepted === null) {
+      wx.showModal({
+        title: 'Accept or Reject',
+        showCancel: true,
+        cancelText: 'No',
+        cancelColor: 'green',
+        confirmText: 'Yes',
+        confirmColor: 'black',
+        success: function (res) {
+          if (res.confirm) {
+            const booking = {}
+            booking["accepted"] = true;
+            wx.request({
+              url: `http://pups-wx.herokuapp.com/api/v1/bookings/${booking_id}`,
+              method: 'PUT',
+              data: {
+                booking
+              },
+              success(res) {
+                page.fetchUserInfo();
+              },
+            });
+          } else if (res.cancel) {
+            const booking = {}
+            booking["accepted"] = false;
+            wx.request({
+              url: `http://pups-wx.herokuapp.com/api/v1/bookings/${booking_id}`,
+              method: 'PUT',
+              data: {
+                booking
+              },
+              success(res) {
+                page.fetchUserInfo();
+              },
+            });
+          }
 
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
   },
 
   /**

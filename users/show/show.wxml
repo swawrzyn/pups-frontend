@@ -47,7 +47,7 @@
             <text>{{pup.location}}</text>
           </view>
           <view class="booking" wx:for="{{pup.bookings}}" wx:for-item="booking">
-            <view id="{{booking.id}}" class="pupdetails" data-test="hello" bindtap="popup">
+            <view id="{{booking.id}}" class="pupdetails" data-accepted="{{booking.accepted}}" bindtap="popup">
               <text class="date">{{booking.time_start}} - {{booking.time_end}}
               </text>
               <view class="checkbox">
