@@ -9,7 +9,9 @@ Page({
     start_date: "",
     end_date: "",
     total_cost: 0,
-    date_error: false
+    date_error: false,
+    slideIndex: 0,
+    currentPhotoUrl: ""
   },
 
   date_string: function(date) {
@@ -29,7 +31,9 @@ Page({
         console.log(res)
         page.setData({ 
           pup: res.data,
-          unavailable_dates: res.data.unavailable_dates.map (date => new Date(date).getTime())
+          unavailable_dates: res.data.unavailable_dates.map (date => new Date(date).getTime()),
+          slideMaxIndex: res.data.images.length - 1,
+          currentPhotoUrl: res.data.images[0]
         });
       }
     })
@@ -90,5 +94,27 @@ Page({
     wx.navigateTo({
       url: "/bookings/new/new"
     });
+  },
+
+  slideLeft: function () {
+    if (this.data.slideIndex === 0) {
+      this.setData({
+        slideIndex: this.data.slideMaxIndex
+      });
+    } else {
+      this.setData({ slideIndex: this.data.slideIndex - 1});
+    }
+    this.setData({ currentPhotoUrl: this.data.pup.images[this.data.slideIndex]});
+  },
+
+  slideRight: function () {
+    if (this.data.slideIndex === this.data.slideMaxIndex) {
+      this.setData({
+        slideIndex: 0
+      });
+    } else {
+      this.setData({ slideIndex: this.data.slideIndex + 1 });
+    }
+    this.setData({ currentPhotoUrl: this.data.pup.images[this.data.slideIndex] });
   }
 })
