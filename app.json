@@ -5,7 +5,8 @@
     "pups/show/show",
     "pups/new/new",
     "bookings/new/new",
-    "users/show/show"
+    "users/show/show",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
