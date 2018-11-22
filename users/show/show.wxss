@@ -136,7 +136,24 @@ button {
   margin: 25rpx auto;
   font-weight: bold;
 }
-
+.pupdetails {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+.booking {
+  width: 90vw;
+  border-bottom: 1px solid rgb(200,200,200);
+}
+.booking:last-child {
+  border-bottom: 0;
+}
+date {
+  float: left;
+}
+checkbox {
+  float: right;
+}
 .pup-item {
   position: relative;
   width: 100vw;
@@ -148,7 +165,7 @@ button {
 
 .pup-item movable-area {
   height: 120rpx;
-  width: calc(100vw - 120rpx);
+  width: calc(100vw - 240rpx);
 }
 
 .pup-item movable-view {
@@ -162,7 +179,7 @@ button {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0; 
+  right: 50px; 
   width: 120rpx;
   font-family: PingFangSC-Regular;
   font-size: 24rpx;
