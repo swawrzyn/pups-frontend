@@ -35,24 +35,26 @@
 
 
   <view class="reviews-container">
-    <text class="review-title">Reviews</text>
-
+    <view class="review-title">
+    <text>Reviews ({{pup.reviews.length}})</text>
+    </view>
     <block wx:for="{{pup.reviews}}" wx:for-item="review">
       <view class="review-box">
         <view class="review-body">
-        <image src="{{pup.user.avatarUrl}}" class="review-avatar"/>
-        <text class="review-content">"{{review.content}}"</text>
+          <image src="{{review.avatarUrl}}" class="review-avatar"/>
+            <text class="review-date">{{review.date}}</text>
+            <text class="review-name">{{review.nickName}}</text>
+            <view class="review-stars">
+                <block wx:for="{{review.rating}}">
+                 <text> ★ </text>
+                </block>
+            </view>
         </view>
         <view class="review-footer">
-          <view class="review-stars">
-          <block wx:for="{{review.rating}}">
-            ★
-          </block>
-          </view>
+          <text class="review-content">"{{review.content}}"</text>
         </view>
       </view>
     </block>
   </view>
-
 </view>
 
