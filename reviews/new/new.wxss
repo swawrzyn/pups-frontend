@@ -1,0 +1,21 @@
+/* reviews/new/new.wxss */
+.form-fields {
+  margin:15px 8px;
+}
+.btn-submit {
+margin-bottom:8px;
+color:white;
+}
+.desc {
+  border: 2px solid rgb(240,240,240);
+  margin: 5px 0px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.rating {
+  font-size: 25px;
+  text-align: center;
+  color: grey;
+  margin: 5px 0px;
+}

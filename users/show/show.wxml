@@ -66,6 +66,3 @@ inertia="true" data-productIndex="{{index}}" bindchange="handleMovableChange">
     <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
   </view>         
 </view>
-<view wx:elif="{{!userInfo}}" class="login-container">
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Please Login</button>
-</view>

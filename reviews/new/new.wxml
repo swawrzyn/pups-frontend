@@ -1,0 +1,17 @@
+<!--reviews/new/new.wxml-->
+<view class="container">
+  <view class="big-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{pup.image}}')">
+  </view>
+  <view class="pup-infor">
+    <text class="pup-name">{{pup.name}}nametest</text>
+    <text class="pup-address">{{pup.location}}locationtest</text>
+  </view>
+</view>
+<view class="form-fields">
+  <text>Your review</text>
+    <form bindsubmit="userInput" bindreset="formReset">
+      <input class="desc" name="name" placeholder='E.g: It was great!'/>
+      <text class="rating">★★★★★</text>
+     <button type="primary" form-type="submit" loading="{{loading}}">Submit</button>
+    </form>
+</view>
