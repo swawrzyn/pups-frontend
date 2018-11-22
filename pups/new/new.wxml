@@ -1,11 +1,33 @@
-<view class="form-fields">
-<form bindsubmit="userInput" bindreset="formReset">
-  <input class="desc" name="name" placeholder="Enter a name" />
-  <input class="desc" name="location" placeholder="Enter a location" />
-  <input class="desc" name="description" placeholder="Enter a description" />
-  <input class="desc" name="image" placeholder="Enter an image url" />
-  <input class="desc" name="price" placeholder="Enter a price" />
-  <button type="primary" formType="submit">Submit</button>
-</form>
+<view class="container">
+  <view class="input-fields-box">
+    <view class="input-title"><text>Add a pup</text></view>
+    <form class="form-fields" bindsubmit="userInput" bindreset="formReset">
+      
+      <view class="text-fields">
+        <input class="desc" name="name" placeholder="Name" />
+        <input class="desc" name="location" placeholder="Location" />
+        <input class="desc" name="description" placeholder="Description" />
+        <input class="desc" type="digit" name="price" placeholder="Price/day(元)" />
+      </view>
+
+      <view class="images-area">
+        <block wx:for="{{images}}" wx:for-item="image">
+          <view class="weui-uploader__file">
+              <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
+          </view>
+        </block>
+        <block wx:if="{{imagesLength < 5}}">
+          <view class="weui-uploader__input-box">
+            <view class="weui-uploader__input" bindtap="takePhoto"></view>
+          </view>
+        </block>
+      </view>  
+
+      <view class="submit-button">
+        <button type="primary" formType="submit">Submit</button>
+      </view>
+    </form>
+  </view>
 </view>
+
 
