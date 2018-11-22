@@ -1,14 +1,38 @@
 // reviews/new/new.js
 Page({
+  data: {
+      array: ['★', '★★', '★★★', '★★★★','★★★★★'],
+      rating: 1
+    },
+  bindReviewChange: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      rating: e.detail.value
+    }),
+    // wx.showModal({
+    //   success: function (res) {
+    //     if (wx.canIUse('showModal.cancel')) {
+    //       console.log(res.cancel)
+    //     }
+    //   }
+    // })
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+  },
   userInput: function (e) {
-    //...
     const app = getApp();
     console.log(app.globalData.userId);
     let review = e.detail.value;
-    review["rating"] = 4;
     review["user_id"] = app.globalData.userId;
-    review["booking_id"] = 14;
-
+    review["booking_id"] = 24;
+    review["rating"] = this.data.rating;
     // Get api data
     wx.request({
       url: `http://pups-wx.herokuapp.com/api/v1/reviews`,
@@ -22,6 +46,11 @@ Page({
       }
     });
   },
+  bindPickerChange: function (e) {
+    this.setData({
+      rating: Number.parseInt(e.detail.value) + 1
+    });
+  }
 
   /**
    * Page initial data
