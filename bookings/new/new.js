@@ -27,13 +27,6 @@ Page({
       unavailable_dates: app.globalData.unavailable_dates,
       userId: app.globalData.userId
     });
-
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    }
   },
 
   /**
@@ -214,12 +207,28 @@ Page({
   },
   getUserInfo: function (e) {
     const app = getApp();
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    const updateData = {
+      avatarUrl: e.detail.userInfo.avatarUrl,
+      nickName: e.detail.userInfo.nickName
+    }
+
+    wx.request({
+      url: `http://pups-wx.herokuapp.com/api/v1/users/${this.data.userId}`,
+      method: 'PUT',
+      data: updateData,
+      success(res) {
+        console.log("PUT to server sucess: ", res);
+      },
+      fail(res) {
+        console.log("PUT to server sucess: ", res);
+      }
+    });
+
     wx.showToast({
       title: 'Please wait',
       duration: 5000,

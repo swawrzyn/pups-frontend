@@ -65,20 +65,37 @@ Page({
   },
   getUserInfo: function (e) {
     const app = getApp();
+    this.setData({
+      userId: app.globalData.userId
+    });
     app.globalData.userInfo = e.detail.userInfo;
+    const updateData = {
+      avatarUrl: e.detail.userInfo.avatarUrl,
+      nickName: e.detail.userInfo.nickName
+    }
+
+    wx.request({
+      url: `http://pups-wx.herokuapp.com/api/v1/users/${this.data.userId}`,
+      method: 'PUT',
+      data: updateData,
+      success(res) {
+        console.log("PUT to server result: ", res);
+      }
+    });
 
     wx.showToast({
       title: 'Please wait',
-      duration: 5000,
+      duration: 3000,
       icon: 'loading',
       success: function () {
           setTimeout(function () {
             wx.reLaunch({
               url: '/users/show/show'
             })
-          }, 5000);
+          }, 3000);
         }
     });
+    
   },
   goHome: function () {
     wx.reLaunch({
