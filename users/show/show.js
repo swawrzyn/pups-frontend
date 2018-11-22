@@ -125,13 +125,6 @@ Page({
       }
     });
   },
-  // 滑动切换tab
-  bindChange: function (e) {
-
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
-
-  },
 
   toNewPup: function () {
     wx.navigateTo({
@@ -139,16 +132,26 @@ Page({
     });
   },
 
-  // 点击tab切换
-  swichNav: function (e) {
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
+  handleDenyProduct: function (e) {
+    let pupIndex = e.currentTarget.dataset.pupindex
+    let user = this.data.user
+
+    user.pups.splice(pupIndex, 1)
+
+    this.setData({
+      user: user
+    })
+  },
+
+  handleAccepteProduct: function (e) {
+    let pupIndex = e.currentTarget.dataset.pupindex
+    let user = this.data.user
+
+    user.pups.splice(pupIndex, 1)
+
+    this.setData({
+      user: user
+    })
   },
 
   /**
