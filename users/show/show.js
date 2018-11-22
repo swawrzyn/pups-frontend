@@ -8,8 +8,15 @@ Page({
     winWidth: 0,
     winHeight: 0,
     // tab切换
+    navbar: ['Your Bookings', 'Your Pups'],
     currentTab: 0,
   },
+  navbarTap: function (e) {
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx
+    })
+  },
+
 
   /**
    * Lifecycle function--Called when page load
