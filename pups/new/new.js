@@ -1,12 +1,14 @@
 // pups/new/new.js
+const app = getApp();
+const AV = require('../../utils/av-weapp-min.js');
+
 Page({
   userInput: function (e) {
     //...
-    const app = getApp();
     console.log(app.globalData.userId);
     let pup = e.detail.value;
     pup["user_id"] = app.globalData.userId;
-
+    pup["images"] = this.data.images;
     // Get api data
     wx.request({
       url: `http://pups-wx.herokuapp.com/api/v1/pups`,
@@ -19,22 +21,23 @@ Page({
         });
       }
     });
-  }
+  },
 
 
   /**
    * Page initial data
    */
-//   data: {
-  
-//   },
+   data: {
+     images: [],
+     imagesLength: 0
+  },
 
-//   /**
-//    * Lifecycle function--Called when page load
-//    */
-//   onLoad: function (options) {
+  /**
+   * Lifecycle function--Called when page load
+   */
+  onLoad: function (options) {
 
-//   },
+  },
 
 //   /**
 //    * Lifecycle function--Called when page is initially rendered
@@ -83,5 +86,29 @@ Page({
 //    */
 //   onShareAppMessage: function () {
 
-//   }
- })
+//   },
+takePhoto: function () {
+  const page = this;
+    wx.chooseImage({
+      count: (5 - page.data.imagesLength),
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        let tempFilePaths = res.tempFilePaths;
+
+        res.tempFilePaths.forEach((filePath) => {
+          new AV.File('file-name', {
+            blob: {
+              uri: filePath,
+            },
+          }).save().then(
+            file => page.setData({
+              imagesLength: page.data.imagesLength + 1,
+              images: page.data.images.concat([file.url()])
+              
+            })
+            ).catch(console.error);
+        });
+      }
+    })
+}})
