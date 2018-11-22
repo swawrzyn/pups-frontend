@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -65,7 +65,14 @@
 				{
 					"id": -1,
 					"name": "pups show",
-					"pathName": "pups/show/show"
+					"pathName": "pups/show/show",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "create review",
+					"pathName": "reviews/new/new",
+					"query": "booking=14"
 				}
 			]
 		}
