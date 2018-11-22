@@ -36,7 +36,7 @@
 
   <view class="reviews-container">
     <view class="review-title">
-    <text>Reviews</text>
+    <text>Reviews ({{pup.reviews.length}})</text>
     </view>
     <block wx:for="{{pup.reviews}}" wx:for-item="review">
       <view class="review-box">
