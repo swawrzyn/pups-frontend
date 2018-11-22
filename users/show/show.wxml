@@ -3,65 +3,68 @@
 <!--index.wxml-->
 <view class="user-box"><image class="user-avatar" src="{{userInfo.avatarUrl}}"></image><text>{{userInfo.nickName}}</text></view>
 <view wx:if="{{userInfo}}" class="user-container">
-  <view class="swiper-tab">
-      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">Your Bookings</view>
-      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">Your Pups</view>
+  <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
   </view>
-    
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
-      <!-- Bookings List -->
-      <swiper-item>
-        <block wx:for="{{user.bookings}}" wx:for-item="booking">
-          <view class="card">
-            <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{booking.pup.image}}');">
-              <view class="card-category">{{booking.pup.name}}</view>
-              <view class="card-description">
-                <text>{{booking.pup.location}}</text>
-              </view>
+ 
+<!--Booking List-->
+  <view hidden="{{currentTab!==0}}">
+    <block wx:for="{{user.bookings}}" wx:for-item="booking">
+      <view class="bookingcard">
+        <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{booking.pup.image}}');">
+          <view class="card-category">{{booking.pup.name}}</view>
+          <view class="card-description">
+            <text>{{booking.pup.location}}</text>
+          </view>
+        </view>
+        <view class="details">
+          <text>{{booking.time_start}} - {{booking.time_end}}
+          </text>
+          <view class="checkbox">
+            <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
+            <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
+            <view wx:elif="{{booking.accepted === nil}}"style="color:white;">?</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+  <!--Pup List-->
+  <view hidden="{{currentTab!==1}}">
+    <view class="pup-item" wx:for="{{user.pups}}" wx:for-item="pup">
+      <movable-area>
+      <movable-view out-of-bounds="true" direction="horizontal" x="{{pup.xmove}}" 
+inertia="true" data-productIndex="{{index}}" bindchange="handleMovableChange">
+        <view class="pupcard">
+          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image}}');">
+            <view class="card-category">{{pup.name}}</view>
+            <view class="card-description">
+              <text>{{pup.location}}</text>
             </view>
-            <view class="details">
+          </view>
+          <view class="card-category">{{pup.name}}</view>
+          <view class="card-description">
+            <text>{{pup.location}}</text>
+          </view>
+          <block wx:for="{{pup.bookings}}" wx:for-item="booking">
+            <view class="pupdetails">
               <text>{{booking.time_start}} - {{booking.time_end}}
               </text>
               <view class="checkbox">
                 <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
                 <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
-                <view wx:elif="{{booking.accepted === nil}}"style="color:white;">?</view>
+                <view wx:elif="{{booking.accepted === null}}"style="color:blue;">?</view>
               </view>
             </view>
-          </view>
-        </block>
-      </swiper-item>
-      <!-- Pups List -->
-      <swiper-item>
-      <block wx:for="{{user.pups}}" wx:for-item="pup">
-          <view class="card">
-            <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image}}');">
-              <view class="card-category">{{pup.name}}</view>
-              <view class="card-description">
-                <text>{{pup.location}}</text>
-              </view>
-            </view>
-            <view class="card-category">{{pup.name}}</view>
-            <view class="card-description">
-              <text>{{pup.location}}</text>
-            </view>
-            <block wx:for="{{pup.bookings}}" wx:for-item="booking">
-              <view class="pupdetails">
-                <text>{{booking.time_start}} - {{booking.time_end}}
-                </text>
-                <view class="checkbox">
-                  <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
-                  <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
-                  <view wx:elif="{{booking.accepted === null}}"style="color:blue;">?</view>
-                </view>
-              </view>
-            </block> 
-          </view>
-        </block>
-        <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
-      </swiper-item>
-      <swiper-item></swiper-item>
-  </swiper>
+          </block> 
+        </view>
+      </movable-view>
+      </movable-area>
+      <view class="delete-btn" data-pupIndex="{{index}}" bindtap="handleDeleteProduct">删除</view>
+      </view>
+    <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
+  </view>         
 </view>
 <view wx:elif="{{!userInfo}}" class="login-container">
   <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Please Login</button>
