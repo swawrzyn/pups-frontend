@@ -10,8 +10,8 @@
 <!--Booking List-->
   <view hidden="{{currentTab!==0}}">
     <block wx:for="{{user.bookings}}" wx:for-item="booking">
-      <view class="bookingcard">
-        <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{booking.pup.image}}');">
+      <view class="bookingcard" bindtap="toReview" data-bookingindex="{{index}}">
+        <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{booking.pup.image[0]}}');">
           <view class="card-category">{{booking.pup.name}}</view>
           <view class="card-description">
             <text>{{booking.pup.location}}</text>
@@ -36,7 +36,7 @@
       <!-- <movable-area>
       <movable-view out-of-bounds="true" direction="horizontal" inertia="true" bindchange="handleMovableChange"> -->
         <view class="pupcard">
-          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image}}');">
+          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.image[0]}}');">
             <view class="card-category">{{pup.name}}</view>
             <view class="card-description">
               <text>{{pup.location}}</text>
