@@ -41,17 +41,17 @@
     <block wx:for="{{pup.reviews}}" wx:for-item="review">
       <view class="review-box">
         <view class="review-body">
-          <image src="{{review.avatarUrl}}" class="review-avatar"/>
-            <text class="review-name">{{review.nickName}}</text> 
+          <text class="review-content">"{{review.content}}"</text>
+        </view>
+        
+        <view class="review-footer">
+          <image src="{{review.avatarUrl}}" class="review-avatar"/> 
             <text class="review-date">{{review.date}}</text>
             <view class="review-stars">
                 <block wx:for="{{review.rating}}">
-                 <text> ★ </text>
+                 <text>★</text>
                 </block>
             </view>
-        </view>
-        <view class="review-footer">
-          <text class="review-content">"{{review.content}}"</text>
         </view>
       </view>
     </block>
