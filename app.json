@@ -15,13 +15,19 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
+    "color": "black",
+    "selectedColor": "#1296db",
     "list": [
       {
         "pagePath": "pups/index/index",
+        "iconPath": "pages/images/首页.png",
+        "selectedIconPath": "pages/images/首页blue.png",
         "text": "HOME"
       },
       {
         "pagePath": "users/show/show",
+        "iconPath": "pages/images/用户.png",
+        "selectedIconPath": "pages/images/用户blue.png",
         "text": "USER"
       }
     ]
