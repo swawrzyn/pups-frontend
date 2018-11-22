@@ -1,4 +1,4 @@
-// bookings/new/new.js
+    // bookings/new/new.js
 Page({
 
   /**
