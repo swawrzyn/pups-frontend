@@ -117,7 +117,7 @@
 }
 
 .review-title {
-  font-size: 75rpx;
+  font-size: 40rpx;
 }
 
 .review-box {
@@ -131,44 +131,66 @@
   box-shadow: 0px 4px 8px #c1c1c1;
 }
 
-.review-avatar{
-  width: 50px;
-  height:50px;
-  border-radius:50px;
-}
-
-.review-content{
- left:100px
-}
-
 .review-box .review-body {
-  margin-top:10px;
+  margin:10px;
   width: 100%;
   height: 125rpx;
-  display: flex;
+  position:relative;
   align-items: center;
-  justify-content: space-around;
 }
+
 
 .review-body .review-content {
   margin-left: 25rpx;
 }
 
+.review-avatar{
+  position:absolute;
+  width: 30px;
+  height:30px;
+  border-radius:50px;
+  margin-left:10px;
+  top:10px;
+}
+
+.review-date{
+   position:absolute;
+   top:25px;
+   right:200px;
+   font-size:10px;
+}
+
+.review-name{
+  position:absolute;
+  right:205px;
+  font-size:10px;
+  font-weight:bold;
+  top:10px
+}
+.review-content{
+ top:25px;
+ left:70px;
+ font-size:8px;
+}
+
+.review-stars{
+position:absolute;
+right:50px;
+top:8px;
+font-size:15px
+}
+
 .review-footer {
   width: 100%;
   display: flex;
-  justify-content:flex-end;
+  margin-left:25px;
   align-items: center;
   height: 75rpx;
+  font-size: 20px;
+  bottom:0px;
 }
 
-.review-footer .review-avatar {
-  margin-left: 25rpx;
-}
 
-.review-footer .review-stars {
-  margin-right: 25rpx;
-}
 
 
 
