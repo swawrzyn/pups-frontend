@@ -1,10 +1,44 @@
 .big-image {
+  position: relative;
   height: 250px;
   width: 100%;
   margin: 0;
   padding: 0;
   background-size: cover;
   background-position: center;
+  transition: all 1s ease;
+}
+
+.big-image .slide-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 25rpx;
+  transition: opacity 1s ease;
+  opacity: 0.5;
+}
+
+.big-image .slide-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 25rpx;
+  transition: all 1s ease;
+  opacity: 0.5;
+}
+
+.arrow-opacity {
+  opacity: 0.75;
 }
 
 .container {
