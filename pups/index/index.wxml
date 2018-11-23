@@ -1,3 +1,26 @@
+<wxs module="filter">
+var checkRating = function(pup, currentRating){
+  if(currentRating == 0){
+    return true
+  }
+  return pup.avg_rating == currentRating
+}
+
+var checkPrice  = function(pup, currentPriceRangeIndex){
+  if(currentPriceRangeIndex == 0){
+    return true
+  } else if(currentPriceRangeIndex == 1){
+  console.log("test")
+    return pup.price > 0 && pup.price < 500
+  } else {
+    return pup.price >= 500
+  }
+}
+
+module.exports.checkRating = checkRating
+module.exports.checkPrice = checkPrice
+
+</wxs>
 <!--index.wxml-->
 <view class="weui-search-bar">
             <view class="weui-search-bar__form">
@@ -18,7 +41,7 @@
         <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
             <navigator url="" class="weui-cell" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
+                    <view>{{inputVal}}</view>
                 </view>
             </navigator>
             <navigator url="" class="weui-cell" hover-class="weui-cell_active">
@@ -39,8 +62,13 @@
 </view>
 <view class="filter-bar">
     <picker mode="region" bindchange="bindRegionChange" value="{{region}}"  custom-item="{{customItem}}"><view class="filter-button" hover-class="filter-button-hover">Location ▼</view></picker>
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"><view class="filter-button" hover-class="filter-button-hover">Price ▼</view></picker>
-    <picker mode="date" value="{{date}}" start="2018-11-19" end="2018-12-31" bindchange="bindDateChange"><view class="filter-button" hover-class="filter-button-hover">Date ▼</view></picker>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{price}}"><view class="filter-button" hover-class="filter-button-hover">Price ▼</view></picker>
+      <picker bindchange="bindReviewChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      Rating ▼
+    </view>
+  </picker>
+   <!-- <picker mode="date" value="{{date}}" start="2018-11-19" end="2018-12-31" bindchange="bindDateChange"><view class="filter-button" hover-class="filter-button-hover"> ▼</view></picker> -->
   </view>
 
 <view class="container">
@@ -48,8 +76,8 @@
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">Loading...</view>
         </view>
-<view wx:for="{{pups}}" wx:for-item="pup">
-  <view class="pup-card">
+<view wx:for="{{pups}}" wx:for-item="pup" wx:if="{{filter.checkRating(pup, currentRating) && filter.checkPrice(pup, currentPriceRangeIndex)}}">
+  <view class="pup-card" >
     <view class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{pup.images[0]}}')">
       <text class="card-title">{{pup.name}}</text>
       <text class="card-address">{{pup.location}}</text>

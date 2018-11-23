@@ -6,7 +6,7 @@ Page({
     inputShowed: false,
     inputVal: "",
     region: ["浦东新区", "徐汇区", "长宁区", "普陀区", "闸北区", "虹口区", "杨浦区", "黄浦区", "卢湾区", "静安区", "宝山区", "闵行区", "嘉定区", "金山区", "松江区", "青浦区", "南汇区", "奉贤区", "崇明区"],
-    array: ["100-500", "501-1000"],
+    price: ["0 - 500", " > 500 "],
     objectArray: [
       {
         id: 0,
@@ -18,7 +18,10 @@ Page({
       },
     ],
     index: 0,
-  
+    array: ['★', '★★', '★★★', '★★★★', '★★★★★'],
+    currentRating: 0,
+    currentPriceRangeIndex: 0
+
   },
   showInput: function () {
     this.setData({
@@ -37,9 +40,57 @@ Page({
     });
   },
   inputTyping: function (e) {
+    console.log(e)
+    const page = this
+    let pups = []
+    var inputVal = e.detail.value
+    if (inputVal === "") {
+      console.log(page.data)
+      page.fetchPups();
+    } 
+    else {
+      wx.request({
+        url: `http://pups-wx.herokuapp.com/api/v1/pups?query=${inputVal}`,
+        method: 'GET',
+        success(res) {
+          page.setData({
+            pups: res.data.pups
+          });
+        },
+      })
+    }
+    
+  },
+  bindReviewChange: function (e) {
+    // this.data.pups = this.data.pups_original
+
     this.setData({
-      inputVal: e.detail.value
-    });
+      currentRating: parseInt(e.detail.value) + 1
+    })
+
+    // var i = parseInt(e.detail.value) + 1;
+    // console.log("current rating:" + i)
+    // var pups = this.data.pups_original.filter(function(pup){
+    //   console.log(pup.avg_rating)
+    //   return pup.avg_rating == i
+    // })
+    // console.log(pups);
+    // this.setData ({
+    //   pups: pups
+    // })
+
+
+    // console.log(e.detail);
+    // return;
+    // wx.request({
+    //   url: `http://pups-wx.herokuapp.com/api/v1/pups?query=${e.detail.value}`,
+    //   method: 'GET',
+    //   success(res) {
+    //     this.setData({
+    //       pups: res.data.pups
+    //     });
+    //   },
+    // })
   },
   //事件处理函数
   bindViewTap: function() {
@@ -106,9 +157,9 @@ Page({
   bindPickerChange: function (e) {
     // if e,detal.value[2] 
     // console.log(this.data)
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      currentPriceRangeIndex: parseInt(e.detail.value) + 1
     })
   },
   fetchPups: function () {
@@ -129,6 +180,10 @@ Page({
     wx.showNavigationBarLoading();
     console.log("pulled down!");
     this.fetchPups();
+    this.setData({
+      currentRating: 0,
+      currentPriceRangeIndex: 0
+    })
   },
 
   getUserInfo: function(e) {
