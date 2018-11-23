@@ -78,6 +78,17 @@ Page({
   },
   onShow: function () {
   },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // From the forward button within the page
+      console.log(res.target)
+    }
+    return {
+      path: `/pups/index/index`,
+      imageUrl: 'http://lc-s6kmsNUF.cn-n1.lcfile.com/898a0f61c8ca1356c74b.png'
+    }
+  },
+
   bindRegionChange: function (e) {
     const page = this;
     let pups = [];
