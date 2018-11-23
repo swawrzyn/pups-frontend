@@ -176,7 +176,6 @@
   justify-content: flex-start;
   font-size:16px;
   font-style: italic;
-  
 }
 
 
@@ -193,13 +192,14 @@
 
 
 .review-footer {
-  width: 100%;
+  width: 93%;
   display: flex;
   align-items: center;
   height: 75rpx;
   font-size: 12px;
   justify-content:space-between;
   padding: 25rpx;
+  background-color:#f2f2f2;
 
 }
 
