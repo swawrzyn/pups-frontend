@@ -101,24 +101,10 @@ Page({
               return booking
             })
           });
-          user.pups.forEach ((pup)=>{
-            pup.bookings.forEach ((booking)=>{
-              if (booking.accepted === null) {
-                i += 1;
-              }
-              return i
-            })
-            // return i
-          })
-          if (i !== 0) {
-            wx.setTabBarBadge({
-              index: 1,
-              text: `${i}`
-            })
-          }
+          
         }
       page.setData({ user: user});
-          
+        page.setBadgeNumber();
       },
       complete () {
         wx.stopPullDownRefresh();
@@ -144,6 +130,29 @@ Page({
         }, 5000);
       }
     });
+  },
+
+  setBadgeNumber: function () {
+    let i = 0;
+    this.data.user.pups.forEach((pup) => {
+      pup.bookings.forEach((booking) => {
+        if (booking.accepted === null) {
+          i += 1;
+        }
+        return i
+      })
+      // return i
+    })
+    if (i > 0) {
+      wx.setTabBarBadge({
+        index: 1,
+        text: `${i}`
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 1,
+      })
+    }
   },
 
   toNewPup: function () {
@@ -174,6 +183,7 @@ Page({
               },
               success(res) {
                 page.fetchUserInfo();
+                page.setBadgeNumber();
               },
             });
           } else if (res.cancel) {
@@ -187,10 +197,14 @@ Page({
               },
               success(res) {
                 page.fetchUserInfo();
+                wx.setTabBarBadge({
+                  index: 1,
+                  text: `${Number.parseInt(wx.ta)}`
+                })
               },
             });
           }
-
+        
         },
         fail: function (res) { },
         complete: function (res) { },
