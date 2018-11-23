@@ -156,3 +156,51 @@ button {
   z-index: 999;
   margin-top: 10px;
 } */
+
+.pup-item movable-area {
+  height: 120rpx;
+  width: calc(100vw - 240rpx);
+}
+
+.pup-item movable-view {
+  height: 120rpx;
+  width: 100vw;
+  background: #fff;
+  z-index: 999;
+}
+
+.pup-item .accepte-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50px; 
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 120rpx;
+  z-index: 1;
+  background: #1296db;
+  text-align: center;
+}
+
+.pup-item .deny-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0; 
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 120rpx;
+  z-index: 1;
+  background: #E66671;
+  text-align: center;
+}
+
+.btn{
+  background-color:#80D3D5;
+  border:none;
+  color:white;
+}
