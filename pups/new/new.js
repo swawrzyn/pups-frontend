@@ -10,6 +10,10 @@ Page({
     let pup = e.detail.value;
     pup["user_id"] = app.globalData.userId;
     pup["images"] = this.data.images;
+    pup["lat"] = this.data.lat;
+    pup["long"] = this.data.long;
+    console.log("lat: " + this.data.lat)
+    console.log(pup)
     // Get api data
     wx.request({
       url: `http://pups-wx.herokuapp.com/api/v1/pups`,
@@ -42,9 +46,25 @@ Page({
 
   search: function (e) {
     let that = this
+    let app = getApp();
+    
     wx.chooseLocation({
       success: function (res) {
-        that.setData({address: res.address})
+        // let req = {
+        //   lat: res.latitude,
+        //   long: res.longitude
+        // }
+        // wx.request({
+        //   url: `http://pups-wx.herokuapp.com/api/v1/pups`,
+        //   method: 'POST',
+        //   data: req,
+        //   success() {}
+        // });
+        that.setData({
+          address: res.address,
+            lat: res.latitude,
+          long: res.longitude
+        })
       }
     })
   },
