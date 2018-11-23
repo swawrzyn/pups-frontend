@@ -1,4 +1,4 @@
-  // users/show/show.js
+// users/show/show.js
 Page({
 
   /**
@@ -8,7 +8,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     // tab切换
-    navbar: ['Your Bookings', 'Your Pups'],
+    navbar: ['Your Bookings', 'Your Listings  '],
     count: 0,
     currentTab: 0
   },
@@ -37,7 +37,8 @@ Page({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
         });
-    }});
+      }
+    });
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -47,7 +48,7 @@ Page({
       });
       this.fetchUserInfo();
       console.log("setdata");
-      } else if (this.data.canIUse) {
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -61,8 +62,8 @@ Page({
         console.log("fetching info");
         this.fetchUserInfo();
       }
-    } 
-      else {
+    }
+    else {
       // // 在没有 open-type=getUserInfo 版本的兼容处理
       // wx.getUserInfo({
       //   success: res => {
@@ -101,12 +102,12 @@ Page({
               return booking
             })
           });
-          
+
         }
-      page.setData({ user: user});
+        page.setData({ user: user });
         page.setBadgeNumber();
       },
-      complete () {
+      complete() {
         wx.stopPullDownRefresh();
         wx.hideNavigationBarLoading();
       }
@@ -126,7 +127,7 @@ Page({
       icon: 'loading',
       success: function () {
 
-        setTimeout(function () { 
+        setTimeout(function () {
         }, 5000);
       }
     });
@@ -165,7 +166,8 @@ Page({
     const booking_id = e.currentTarget.id;
     if (e.currentTarget.dataset.accepted === null) {
       wx.showModal({
-        title: 'Accept or Reject',
+        title: 'Prompt',
+        content: 'Would you like to accept or reject this booking?',
         showCancel: true,
         cancelText: 'Reject',
         cancelColor: '#000000',
@@ -204,7 +206,7 @@ Page({
               },
             });
           }
-        
+
         },
         fail: function (res) { },
         complete: function (res) { },
@@ -212,14 +214,15 @@ Page({
     }
   },
 
-  checkIfReviewed: function(bookingId) {
+  checkIfReviewed: function (bookingId) {
     const userReviews = this.data.user.reviews;
-    return userReviews.some((review) => {
-      review.booking_id === bookingId;
-    });
+    // return userReviews.some((review) => {
+    //   review.booking_id === bookingId;
+    // });
+    return true;
   },
 
-  toReview: function(e) {
+  toReview: function (e) {
     const app = getApp();
     const currBooking = this.data.user.bookings[e.currentTarget.dataset.bookingindex];
     if (currBooking.accepted) {
