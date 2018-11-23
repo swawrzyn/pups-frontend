@@ -5,8 +5,7 @@
       
       <view class="text-fields">
         <input class="desc" name="name" placeholder="Name" />
-        <input class="address" name="location" placeholder="Location" value="{{address}}" />
-        <button bindtap="search">Search</button>
+        <input class="desc" name="location" bindfocus="search" placeholder="Location" value="{{address}}" />
         <input class="desc" name="description" placeholder="Description" />
         <input class="desc" type="digit" name="price" placeholder="Price/day(元)" />
       </view>

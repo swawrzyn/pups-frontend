@@ -38,7 +38,7 @@
             </navigator>
 </view>
 <view class="filter-bar">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"><view class="filter-button" hover-class="filter-button-hover">Location ▼</view></picker>
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}"  custom-item="{{customItem}}"><view class="filter-button" hover-class="filter-button-hover">Location ▼</view></picker>
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"><view class="filter-button" hover-class="filter-button-hover">Price ▼</view></picker>
     <picker mode="date" value="{{date}}" start="2018-11-19" end="2018-12-31" bindchange="bindDateChange"><view class="filter-button" hover-class="filter-button-hover">Date ▼</view></picker>
   </view>

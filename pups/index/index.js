@@ -4,7 +4,21 @@ const app = getApp()
 Page({
   data: {
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    region: ["浦东新区", "徐汇区", "长宁区", "普陀区", "闸北区", "虹口区", "杨浦区", "黄浦区", "卢湾区", "静安区", "宝山区", "闵行区", "嘉定区", "金山区", "松江区", "青浦区", "南汇区", "奉贤区", "崇明区"],
+    array: ["100-500", "501-1000"],
+    objectArray: [
+      {
+        id: 0,
+        price: '100-500'
+      },
+      {
+        id: 1,
+        name: '501-1000'
+      },
+    ],
+    index: 0,
+  
   },
   showInput: function () {
     this.setData({
@@ -64,7 +78,28 @@ Page({
   },
   onShow: function () {
   },
-
+  bindRegionChange: function (e) {
+    const page = this;
+    let pups = [];
+    page.data.pups.forEach( (pup) => {
+      if (pup.location.includes(e.detail.value[2])) {
+        pups.push(pup);
+      }
+      return pups;
+    });
+    page.setData({ 
+      pups: pups 
+    });
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+  },
+  bindPickerChange: function (e) {
+    // if e,detal.value[2] 
+    // console.log(this.data)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
   fetchPups: function () {
     const page = this
     wx.request({
