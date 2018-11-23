@@ -208,10 +208,11 @@
 }
 
 
-
-
-
-
+.btn{
+  background-color:#80D3D5;
+  border:none;
+  color:white;
+}
 
 
 

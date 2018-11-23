@@ -41,6 +41,7 @@
   margin: 10px;
   box-shadow: 0px 4px 8px #c1c1c1;
   padding: 0;
+  color:rgb(125,125,125);
 }
 
 .card-image {
@@ -98,4 +99,12 @@
 
 .card-link-hover {
   opacity: 0.1;
+}
+
+.weui-search-bar__cancel-btn {
+  color:rgb(125,125,125);
+}
+
+.filter-button,.picker{
+  color:rgb(125,125,125);
 }

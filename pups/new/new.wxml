@@ -24,7 +24,7 @@
       </view>  
 
       <view class="submit-button">
-        <button type="primary" formType="submit">Submit</button>
+        <button class="btn" formType="submit">Submit</button>
       </view>
     </form>
   </view>

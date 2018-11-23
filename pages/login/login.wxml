@@ -1,4 +1,4 @@
 <view class="container">
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Please Login</button>
-  <button bindtap="goHome">Go back</button>
+  <button class='btn'open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
+  <button class='btn' bindtap="goHome">Back</button>
 </view>
