@@ -1,6 +1,11 @@
 <view class="container">
-  <view class="big-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{pup.images[0]}}')"></view>
-  <view class="pup-details">
+<view wx:if="{{!pup}}" class="weui-loadmore">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">Loading...</view>
+</view>
+<view></view>
+  <view wx:if="{{pup}}" class="big-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url('{{currentPhotoUrl}}')"><view wx:if="{{slideMaxIndex > 0}}" class="slide-left" ontap="slideLeft" over-class="arrow-opacity"><text>⮜</text></view><view wx:if="{{slideMaxIndex > 0}}" class="slide-right" ontap="slideRight" hover-class="arrow-opacity"><text>⮞</text></view></view>
+  <view wx:if="{{pup}}" class="pup-details">
     
     <view class="details">
       
@@ -34,24 +39,24 @@
 
 
 
-  <view class="reviews-container">
+  <view wx:if="{{pup}}" class="reviews-container">
     <view class="review-title">
     <text>Reviews ({{pup.reviews.length}})</text>
     </view>
     <block wx:for="{{pup.reviews}}" wx:for-item="review">
       <view class="review-box">
         <view class="review-body">
-          <image src="{{review.avatarUrl}}" class="review-avatar"/>
+          <text class="review-content">"{{review.content}}"</text>
+        </view>
+        
+        <view class="review-footer">
+          <image src="{{review.avatarUrl}}" class="review-avatar"/> 
             <text class="review-date">{{review.date}}</text>
-            <text class="review-name">{{review.nickName}}</text>
             <view class="review-stars">
                 <block wx:for="{{review.rating}}">
-                 <text> ★ </text>
+                 <text>★</text>
                 </block>
             </view>
-        </view>
-        <view class="review-footer">
-          <text class="review-content">"{{review.content}}"</text>
         </view>
       </view>
     </block>

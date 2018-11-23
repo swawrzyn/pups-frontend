@@ -10,8 +10,10 @@ Page({
     // tab切换
     navbar: ['Your Bookings', 'Your Pups'],
     count: 0,
+    currentTab: 0
   },
   navbarTap: function (e) {
+    console.log
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
@@ -23,9 +25,11 @@ Page({
    */
   onLoad: function (options) {
     const app = getApp();
+
     this.setData({
       userId: app.globalData.userId
     });
+
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -33,8 +37,8 @@ Page({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
         });
-      }
-    });
+    }});
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -194,6 +198,15 @@ Page({
     }
   },
 
+  toReview: function(e) {
+    console.log(e);
+    const app = getApp();
+    app.globalData.pupForReview = this.data.user.bookings[e.currentTarget.dataset.bookingindex].pup; 
+    wx.navigateTo({
+      url: `/reviews/new/new?booking_id=${this.data.user.bookings[e.currentTarget.dataset.bookingindex].id}`,
+    })
+  },
+
   /**
    * Lifecycle function--Called when page is initially rendered
    */
@@ -218,7 +231,8 @@ Page({
    * Lifecycle function--Called when page unload
    */
   onUnload: function () {
-
+    const app = getApp();
+    app.globalData.pupForReview = "";
   },
 
   /**

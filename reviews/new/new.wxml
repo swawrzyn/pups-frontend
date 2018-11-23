@@ -3,15 +3,24 @@
   <view class="big-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{pup.image}}')">
   </view>
   <view class="pup-infor">
-    <text class="pup-name">{{pup.name}}nametest</text>
-    <text class="pup-address">{{pup.location}}locationtest</text>
+    <text class="pup-name">{{pup.name}}</text>
+    <text class="pup-address">{{pup.location}}</text>
   </view>
 </view>
+
 <view class="form-fields">
   <text>Your review</text>
     <form bindsubmit="userInput" bindreset="formReset">
-      <input class="desc" name="content" placeholder='E.g: It was great!'/>
-      <text class="rating">★★★★★</text>
-     <button type="primary" form-type="submit" loading="{{loading}}">Submit</button>
+    <input class="desc" name="content" placeholder='E.g: It was great!'/>
+  <view class="section">
+  <picker bindchange="bindPickerChange" value="1" range="{{array}}">
+    <view class="picker">
+      Rating: {{array[rating - 1]}}
+    </view>
+  </picker>
+</view>
+  <view class="btn-submit">
+    <button type="primary" form-type="submit" loading="{{loading}}">Submit</button>
+  </view>
     </form>
 </view>
