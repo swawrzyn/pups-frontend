@@ -60,7 +60,6 @@ page{
   justify-content:space-between;
   align-items:center;
   flex-direction:column;
-  width:95vw;
   background-size:cover;
   background-position:center;
   margin:10px;
@@ -74,7 +73,7 @@ page{
   justify-content:space-between;
   align-items:center;
   flex-direction:column;
-  width:100vw;
+  margin: 10px;
   background-size:cover;
   background-position:center;
   box-shadow:0px 4px 8px #c1c1c1;
@@ -102,7 +101,7 @@ page{
 
 .card-image {
   width:100%;
-  height:50px;
+  height:100px;
   background-size: cover !important;
   display:flex;
   justify-content:center;
@@ -148,59 +147,12 @@ button {
 .booking:last-child {
   border-bottom: 0;
 }
-date {
-  float: left;
-}
-checkbox {
-  float: right;
-}
-.pup-item {
+
+/* .pup-item {
   position: relative;
-  width: 100vw;
+  width: 90vw;
   border-bottom: 2rpx solid #E9E9E9;
   background: #fff;
   z-index: 999;
   margin-top: 10px;
-}
-
-.pup-item movable-area {
-  height: 120rpx;
-  width: calc(100vw - 240rpx);
-}
-
-.pup-item movable-view {
-  height: 120rpx;
-  width: 100vw;
-  background: #fff;
-  z-index: 999;
-}
-
-.pup-item .accepte-btn {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 50px; 
-  width: 120rpx;
-  font-family: PingFangSC-Regular;
-  font-size: 24rpx;
-  color: #FFFFFF;
-  line-height: 120rpx;
-  z-index: 1;
-  background: #1296db;
-  text-align: center;
-}
-
-.pup-item .deny-btn {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0; 
-  width: 120rpx;
-  font-family: PingFangSC-Regular;
-  font-size: 24rpx;
-  color: #FFFFFF;
-  line-height: 120rpx;
-  z-index: 1;
-  background: #E66671;
-  text-align: center;
-}
+} */
