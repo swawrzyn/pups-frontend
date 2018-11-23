@@ -1,21 +1,70 @@
 /* reviews/new/new.wxss */
+.container {
+  width: 95vw;
+  height: 260px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: sans-serif;
+  border: 0.5px solid #f1f1f1;
+  box-shadow: 0px 4px 8px #c1c1c1;
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+}
+.pup-infor{
+  margin: 5px 0px;
+  justify-content: center;
+}
+.pup-name {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight:bolder;
+  justify-content: center;
+  display: flex;
+  margin: 0px;
+}
+.pup-location {
+  font-size: 15px;
+  color: grey;
+  justify-content: center;
+  display: flex;
+  margin: 0px;
+}
 .form-fields {
   margin:15px 8px;
 }
 .btn-submit {
-margin-bottom:8px;
+margin-top: 10px;
 color:white;
 }
 .desc {
   border: 2px solid rgb(240,240,240);
-  margin: 5px 0px;
-  padding: 5px;
+  padding: 10px;
   font-size: 14px;
 }
 
 .rating {
-  font-size: 25px;
+  font-size: 25x;
   text-align: center;
   color: grey;
   margin: 5px 0px;
+}
+
+.star {
+  color: #f8b500;
+  font-size: 25px;
+  font-weight: bolder;
+  text-shadow: 0px 2px 5px #c1c1c1;
+  border: 2px solid rgb(240,240,240);
+  padding: 0px;
+  text-align: center;
+  background-color:
 }
