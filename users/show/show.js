@@ -9,6 +9,7 @@ Page({
     winHeight: 0,
     // tab切换
     navbar: ['Your Bookings', 'Your Pups'],
+    count: 0,
   },
   navbarTap: function (e) {
     this.setData({
@@ -79,7 +80,8 @@ Page({
       url: `http://pups-wx.herokuapp.com/api/v1/users/${this.data.userId}`,
       method: 'GET',
       success(res) {
-        let user = res.data.user
+        let user = res.data.user;
+        let i = 0;
         if (user.bookings.length > 0) {
           user.bookings = user.bookings.map(bk => {
             bk.time_start = bk.time_start.substr(0, 10)
@@ -95,8 +97,23 @@ Page({
               return booking
             })
           });
+          user.pups.forEach ((pup)=>{
+            pup.bookings.forEach ((booking)=>{
+              if (booking.accepted === null) {
+                i += 1;
+              }
+              return i
+            })
+            // return i
+          })
+          if (i !== 0) {
+            wx.setTabBarBadge({
+              index: 1,
+              text: `${i}`
+            })
+          }
         }
-      page.setData({ user: user });
+      page.setData({ user: user});
           
       },
       complete () {
