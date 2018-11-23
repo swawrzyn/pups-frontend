@@ -8,7 +8,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     // tab切换
-    navbar: ['Your Bookings', 'Your Listings  '],
+    navbar: ['Your Bookings', 'Your Pups'],
     count: 0,
     currentTab: 0
   },
@@ -165,13 +165,12 @@ Page({
     const booking_id = e.currentTarget.id;
     if (e.currentTarget.dataset.accepted === null) {
       wx.showModal({
-        title: 'Prompt',
-        content: 'Would you like to accept or reject this booking?',
+        title: 'Accept or Reject',
         showCancel: true,
-        cancelText: 'Reject',
-        cancelColor: '#000000',
-        confirmText: 'Accept',
-        confirmColor: '#3CC51F',
+        cancelText: 'reject',
+        cancelColor: 'black',
+        confirmText: 'accept',
+        confirmColor: 'green',
         success: function (res) {
           if (res.confirm) {
             const booking = {}
@@ -215,10 +214,9 @@ Page({
 
   checkIfReviewed: function(bookingId) {
     const userReviews = this.data.user.reviews;
-    // return userReviews.some((review) => {
-    //   review.booking_id === bookingId;
-    // });
-    return true;
+    return userReviews.some((review) => {
+      review.booking_id === bookingId;
+    });
   },
 
   toReview: function(e) {
