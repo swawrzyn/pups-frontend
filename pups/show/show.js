@@ -83,8 +83,16 @@ Page({
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // From the forward button within the page
+      console.log(res.target)
+    }
+    return {
+      title: `${this.data.pup.name} - ${this.data.pup.location}`,
+      path: `/pups/show/show?id=${this.data.pup.id}`,
+      imageUrl: this.data.currentPhotoUrl
+    }
   },
 
   toNewBooking: function () {
