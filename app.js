@@ -8,6 +8,8 @@ AV.init({
   appKey: config.appSecret,
 });
 
+
+
 App({
   onLaunch: function () {
     const userId = wx.getStorageSync('userId');

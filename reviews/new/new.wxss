@@ -68,3 +68,9 @@ color:white;
   text-align: center;
   background-color:
 }
+
+.btn{
+  background-color:#80D3D5;
+  border:none;
+  color:white;
+}

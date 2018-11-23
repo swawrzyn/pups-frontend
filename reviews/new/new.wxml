@@ -20,7 +20,7 @@
   </picker>
 </view>
   <view class="btn-submit">
-    <button type="primary" form-type="submit" loading="{{loading}}">Submit</button>
+    <button class='btn' form-type="submit" loading="{{loading}}">Submit</button>
   </view>
     </form>
 </view>

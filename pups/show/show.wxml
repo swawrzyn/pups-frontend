@@ -32,7 +32,7 @@
       </view>
     </view>
     <view class="booking-container">
-      <button class= "booking-button" type="primary" bindtap="toNewBooking">Book now</button>
+      <button class="btn" bindtap="toNewBooking">Book now</button>
     </view>
   </view>
 

@@ -72,6 +72,6 @@
       <!-- <view class="accepte-btn" data-pupIndex="{{index}}" bindtap="handleAccepteProduct">Accepte</view>
       <view class="deny-btn" data-pupIndex="{{index}}" bindtap="handleDenyProduct">Deny</view> -->
       </view>
-    <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
+    <button class='btn' bindtap='toNewPup'>＋ Add new pup</button>
   </view>         
 </view>
