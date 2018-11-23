@@ -14,7 +14,6 @@
 
   <view hidden="{{currentTab!==0}}">
     <view wx:if="{{!user}}" class="weui-loadmore">
-  
       <view class="weui-loading"></view>
       <view class="weui-loadmore__tips">Loading bookings...</view>
   </view>
@@ -41,7 +40,6 @@
             <text class="dates">{{booking.time_start}} - {{booking.time_end}}</text>
             <button class="review" size="mini" type="primary" disabled="{{!booking.accepted}}" bindtap="toReview" data-bookingindex="{{index}}">Review</button>
           </view>
-
         </view>
 
       </block>
@@ -58,7 +56,7 @@
         <!-- <movable-area>
       <movable-view out-of-bounds="true" direction="horizontal" inertia="true" bindchange="handleMovableChange"> -->
         <view class="pupcard">
-          <view class="card-image" style="background-image: linear-gradient(to top, #48b1bf31, #06beb548), url('{{pup.images[0]}}');">
+          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.images[0]}}');">
             <view class="card-category">{{pup.name}}</view>
             <view class="card-description">
               <text>{{pup.location}}</text>

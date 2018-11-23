@@ -163,7 +163,7 @@
 }
 
 .calendar .pink-bg {
-  background-color: #80D3D5;
+  background-color: blue;
   transition: all 0.3s;
   animation-name: choosed;
   animation-duration: 0.5s;
