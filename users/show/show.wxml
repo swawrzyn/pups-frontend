@@ -13,7 +13,6 @@
     <view wx:if="{{!user}}" class="weui-loadmore">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">Loading bookings...</view>
-        </view>
     <block wx:for="{{user.bookings}}" wx:for-item="booking">
       <view class="bookingcard">
           <view class="bookingcard-title" style="background: linear-gradient(to top, #48b1bf31, #06beb548), url('{{booking.pup.images[0]}}')">
@@ -28,7 +27,6 @@
                 <text wx:elif="{{booking.accepted === null}}">?</text>
               </view>
             </view>
-            
           </view>
           <view class="bookingcard-footer">
             <text class="dates">{{booking.time_start}} - {{booking.time_end}}</text>
@@ -44,7 +42,7 @@
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">Loading your listings...</view>
         </view>
-    <view class="pup-item" wx:for="{{user.pups}}" wx:for-item="pup">
+    <view wx:for="{{user.pups}}" wx:for-item="pup">
       <!-- <movable-area>
       <movable-view out-of-bounds="true" direction="horizontal" inertia="true" bindchange="handleMovableChange"> -->
         <view class="pupcard">
@@ -75,7 +73,7 @@
       <!-- <view class="accepte-btn" data-pupIndex="{{index}}" bindtap="handleAccepteProduct">Accepte</view>
       <view class="deny-btn" data-pupIndex="{{index}}" bindtap="handleDenyProduct">Deny</view> -->
       </view>
-    <button type="primary" bindtap='toNewPup'>＋ Add new pup</button>
+    <button class='btn' bindtap='toNewPup'>＋ Add new pup</button>
   </view>         
 </view>
 

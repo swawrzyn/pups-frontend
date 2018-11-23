@@ -11,26 +11,27 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#80D3D5",
     "navigationBarTitleText": "Pups",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundColorBottom": "#80D3D5"
   },
   "tabBar": {
     "color": "black",
-    "selectedColor": "#1296db",
+    "selectedColor": "#F0C0F6",
     "list": [
       {
         "pagePath": "pups/index/index",
         "iconPath": "pages/images/首页.png",
         "selectedIconPath": "pages/images/首页blue.png",
-        "text": "HOME"
+        "text": ""
       },
       {
         "pagePath": "users/show/show",
         "iconPath": "pages/images/用户.png",
         "selectedIconPath": "pages/images/用户blue.png",
-        "text": "USER"
+        "text": ""
       }
     ]
   }

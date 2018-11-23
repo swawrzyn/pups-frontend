@@ -104,6 +104,14 @@ Page({
     });
   },
 
+  showMap: function (options) {
+    console.log(this.data.pup)
+    wx.openLocation({
+      latitude: this.data.pup.lat,
+      longitude: this.data.pup.long,
+    })
+  },
+
   slideLeft: function () {
     if (this.data.slideIndex === 0) {
       this.setData({

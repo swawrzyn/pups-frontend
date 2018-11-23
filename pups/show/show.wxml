@@ -11,7 +11,7 @@
       
       <view class="left">
         <text class="pup-name">{{pup.name}}</text>
-        <text class="pup-address">{{pup.location}}</text>
+        <text class="pup-address" bindtap="showMap">{{pup.location}}</text>
         <view class="pup-rating">
         <block wx:for="{{pup.avg_rating}}">
           ★
@@ -32,7 +32,7 @@
       </view>
     </view>
     <view class="booking-container">
-      <button class= "booking-button" type="primary" bindtap="toNewBooking">Book now</button>
+      <button class="btn" bindtap="toNewBooking">Book now</button>
     </view>
   </view>
 

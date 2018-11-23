@@ -8,13 +8,15 @@ AV.init({
   appKey: config.appSecret,
 });
 
+
+
 App({
   onLaunch: function () {
     const userId = wx.getStorageSync('userId');
     if (userId) {
       this.globalData.userId = userId;
     } else {
-      const host = 'http://pups-wx.herokuapp.com/'
+      const host = 'https://pups-wx.herokuapp.com/'
       wx.login({
         success: (res) => {
           console.log(res)
