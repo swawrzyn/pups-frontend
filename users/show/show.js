@@ -212,13 +212,36 @@ Page({
     }
   },
 
+  checkIfReviewed: function(bookingId) {
+    const userReviews = this.data.user.reviews;
+    return userReviews.some((review) => {
+      review.booking_id === bookingId;
+    });
+  },
+
   toReview: function(e) {
-    console.log(e);
     const app = getApp();
-    app.globalData.pupForReview = this.data.user.bookings[e.currentTarget.dataset.bookingindex].pup; 
-    wx.navigateTo({
-      url: `/reviews/new/new?booking_id=${this.data.user.bookings[e.currentTarget.dataset.bookingindex].id}`,
-    })
+    const currBooking = this.data.user.bookings[e.currentTarget.dataset.bookingindex];
+    if (currBooking.accepted) {
+      if (this.checkIfReviewed(currBooking.id)) {
+        app.globalData.pupForReview = this.data.user.bookings[e.currentTarget.dataset.bookingindex].pup;
+        wx.navigateTo({
+          url: `/reviews/new/new?booking_id=${this.data.user.bookings[e.currentTarget.dataset.bookingindex].id}`,
+        });
+      } else {
+        wx.showModal({
+          title: 'Error',
+          content: "You've already reviewed this booking.",
+          showCancel: false
+        })
+      }
+    } else {
+      wx.showModal({
+        title: 'Error',
+        content: "Can't review an unaccepted or rejected booking.",
+        showCance: false
+      })
+    }
   },
 
   /**
