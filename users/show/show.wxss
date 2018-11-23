@@ -40,32 +40,111 @@ page{
   border-radius: 50%;
   margin: 0 25rpx;
 }
-.bookingcard {
-  position:relative;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-direction:column;
-  width:95vw;
-  background-size:cover;
-  background-position:center;
-  margin:10px;
-  box-shadow:0px 4px 8px #c1c1c1;
-  padding:0;
-}
 
 .bookingcard {
   position:relative;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  flex-direction:column;
+  flex-direction: column;
+  width:95vw;
+  height: 200rpx;
   background-size:cover;
   background-position:center;
-  margin:10px;
   box-shadow:0px 4px 8px #c1c1c1;
   padding:0;
+  margin: 25rpx auto;
 }
+
+.bookingcard-title {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.title-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  margin-left: 25rpx;
+}
+
+.title-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+.bookingcard-title .name {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: light;
+  letter-spacing: 3px;
+}
+
+.bookingcard-title .location {
+  font-style: italic;
+  font-size: 12px;
+  padding-bottom: 10rpx;
+}
+
+
+.title-right .status-box {
+  font-size: 25px;
+}
+
+
+.bookingcard-right {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.bookingcard-footer {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bookingcard-footer .dates {
+  font-style: italic;
+  font-size: 15px;
+  margin-left: 25rpx;
+}
+
+.bookingcard-footer .review {
+  width: 50px;
+  height: 85%;
+  padding: 0;
+  margin: 0;
+  margin-right: 25rpx;
+}
+
+
+
+
+
+
+
+
+
 
 .pupcard {
   position:relative;
@@ -86,7 +165,7 @@ page{
   left: 10px;
   font-size: 15px;
   text-transform: uppercase;
-  color: white;
+  color: black;
 }
 
 .card-description {
@@ -95,7 +174,7 @@ page{
   left: 10px;
   font-size:12px;
   padding:5px 0;
-  color:rgb(200,200,200);
+  color:rgb(100,100,100);
 
 }
 

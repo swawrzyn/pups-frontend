@@ -13,39 +13,40 @@
     <view wx:if="{{!user}}" class="weui-loadmore">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">Loading bookings...</view>
-        </view>
-    <view wx:for="{{user.bookings}}" wx:for-item="booking">
-      <view class="bookingcard" bindtap="toReview" data-bookingindex="{{index}}">
-        <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{booking.pup.images[0]}}');">
-          <view class="card-category">{{booking.pup.name}}</view>
-          <view class="card-description">
-            <text>{{booking.pup.location}}</text>
+    <block wx:for="{{user.bookings}}" wx:for-item="booking">
+      <view class="bookingcard">
+          <view class="bookingcard-title" style="background: linear-gradient(to top, #48b1bf31, #06beb548), url('{{booking.pup.images[0]}}')">
+            <view class="title-left">
+              <text class="name">{{booking.pup.name}}</text>
+              <text class="location">{{booking.pup.location}}</text>
+            </view>
+            <view class="title-right">
+              <view class="status-box">
+                <text wx:if="{{booking.accepted === true}}">✔</text>
+                <text wx:elif="{{booking.accepted === false}}">✘</text>
+                <text wx:elif="{{booking.accepted === null}}">?</text>
+              </view>
+            </view>
           </view>
-        </view>
-        <view class="details">
-          <text>{{booking.time_start}} - {{booking.time_end}}
-          </text>
-          <view class="checkbox">
-            <view wx:if="{{booking.accepted === true}}" style="color:lightgreen;">✔</view>
-            <view wx:elif="{{booking.accepted === false}}"style="color:red;">✘</view>
-            <view wx:elif="{{booking.accepted === null}}"style="color:blue;">?</view>
+          <view class="bookingcard-footer">
+            <text class="dates">{{booking.time_start}} - {{booking.time_end}}</text>
+              <button class="review" size="mini" type="primary" disabled="{{!booking.accepted}}" bindtap="toReview" data-bookingindex="{{index}}">Review</button>
           </view>
-        </view>
-      </view>
-    </view>
+       </view>
+    </block>
   </view>
   
   <!--Pup List-->
   <view hidden="{{currentTab!==1}}">
   <view wx:if="{{!user}}" class="weui-loadmore">
             <view class="weui-loading"></view>
-            <view class="weui-loadmore__tips">Loading your pups...</view>
+            <view class="weui-loadmore__tips">Loading your listings...</view>
         </view>
     <view wx:for="{{user.pups}}" wx:for-item="pup">
       <!-- <movable-area>
       <movable-view out-of-bounds="true" direction="horizontal" inertia="true" bindchange="handleMovableChange"> -->
         <view class="pupcard">
-          <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.images[0]}}');">
+          <view class="card-image" style="background-image: linear-gradient(to top, #48b1bf31, #06beb548), url('{{pup.images[0]}}');">
             <view class="card-category">{{pup.name}}</view>
             <view class="card-description">
               <text>{{pup.location}}</text>
@@ -75,3 +76,18 @@
     <button class='btn' bindtap='toNewPup'>＋ Add new pup</button>
   </view>         
 </view>
+
+
+
+ <!-- <view class="card-image">
+          <view class="card-category">{{booking.pup.name}}</view>
+          <view class="card-description">
+            <text>{{booking.pup.location}}</text>
+          </view>
+        </view>
+        <view class="details">
+          <text>{{booking.time_start}} - {{booking.time_end}}
+          </text> -->
+          <!--  -->
+        <!-- </view>
+      </view> -->
