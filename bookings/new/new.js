@@ -1,6 +1,54 @@
     // bookings/new/new.js
-Page({
+import initCalendar from '../../template/calendar/index';
+import { disableDay } from '../../template/calendar/index';
+// let conf = 
 
+
+Page({
+  
+  conf: {
+    multi: true, // Whether to enable multiple selection, 
+    disablePastDay: true, // Whether to ban past dates
+    defaultDay: '',
+
+    checkConsecutive: function (allDates) {
+      let outcome = allDates.every((date, index) => {
+        date.setDate(date.getDate() + 1)
+        if (index === (allDates.length - 1)) {
+          return true;
+        } else if (date.getTime() === allDates[index + 1].getTime()) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return outcome;
+    },
+
+    afterTapDay: (currentSelect, allSelectedDays) => {
+      const page = getCurrentPages()[getCurrentPages().length - 1];
+    
+
+      let newDates = allSelectedDays.map((date) => {
+        return new Date(`${date.year}-${date.month}-${date.day}`);
+      });
+      newDates = newDates.sort(function (a, b) {
+        return a - b;
+      });
+      if (page.conf.checkConsecutive(newDates)) {
+        page.setData({
+          validDates: true,
+          start_date: newDates[0],
+          end_date: newDates[newDates.length - 1],
+          total_cost: page.computePrice(newDates[0], newDates[newDates.length - 1]) || 0
+        });
+      } else {
+        page.setData({
+          validDates: false
+        });
+      }
+    },
+  },
   /**
    * Page initial data
    */
@@ -9,13 +57,9 @@ Page({
     start_date: "",
     end_date: "",
     total_cost: 0,
-    date_error: false
+    date_error: false,
   },
 
-  date_string: function (date) {
-    console.log(date.toDateString);
-    return date.toDateString();
-  },
 
   /**
    * Lifecycle function--Called when page load
@@ -23,10 +67,12 @@ Page({
   onLoad: function (options) {
     let app = getApp();
     this.setData({
-      pup: app.globalData.pup,
-      unavailable_dates: app.globalData.unavailable_dates,
-      userId: app.globalData.userId
+    pup: app.globalData.pup,
+    userId: app.globalData.userId,
+    userInfo: app.globalData.userInfo
     });
+    initCalendar(this.conf);
+    disableDay(this.formatDates(this.data.pup.unavailable_dates));
   },
 
   /**
@@ -77,6 +123,15 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  formatDates: (unavail_dates) => {
+    unavail_dates = unavail_dates.map((date) => {
+      date = date.split('-');
+      return {year: date[0], month: date[1], day: date[2]};
+    });
+    return unavail_dates;
+  },
+
   checkDates: function (start, end) {
     if (start === "" || end === "") {
       return false;
@@ -109,69 +164,9 @@ Page({
 
   computePrice: function (start, end) {
     const date_difference = end - start;
-    return (date_difference / (60 * 60 * 24 * 1000)) * this.data.pup.price;
+    return ((date_difference / (60 * 60 * 24 * 1000)) + 1) * this.data.pup.price;
   },
 
-  bindStartDateChange: function (res) {
-    this.setData({
-      start_date: new Date(res.detail.value),
-      start_date_string: res.detail.value
-    });
-    if (this.checkDates(this.data.start_date, this.data.end_date)) {
-      this.showInvalidDateModal(this.data.start_date);
-    }
-  },
-
-  bindEndDateChange: function (res) {
-    console.log("changing end date to: " + res.detail.value);
-    this.setData({
-      end_date: new Date(res.detail.value),
-      end_date_string: res.detail.value
-    });
-
-    if (this.checkDates(this.data.start_date, this.data.end_date)) {
-      this.showInvalidDateModal(this.data.end_date);
-    }
-    let sd = new Date(this.data.start_date);
-    let ed = new Date(this.data.end_date);
-    let page = this;
-    console.log(sd);
-    console.log(ed);
-    let working = true;
-    console.log("Working on it...");
-    while (working) {
-      if (this.data.unavailable_dates.includes(ed.getTime())) {
-        wx.showModal({
-          content: 'These dates are unavailable, please pick again.',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              page.setData({
-                start_date: "",
-                start_date_string: "",
-                end_date: "",
-                end_date_string: ""
-              });
-            }
-          }
-        });
-        console.log("it's true!!!");
-        break;
-      } else {
-        ed.setDate(ed.getDate() - 1);
-        console.log("Date is now: " + ed);
-        if (ed.getTime() < sd.getTime()) {
-          console.log("All clear!");
-
-          this.setData({
-            date_error: false,
-            total_cost: this.computePrice(page.data.start_date, page.data.end_date)
-          });
-          working = false;
-        }
-      }
-    }
-  },
   submitBooking: function () {
     let pup_id = this.data.pup.id;
     let booking = { 
