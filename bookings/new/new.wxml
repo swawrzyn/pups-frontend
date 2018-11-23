@@ -1,3 +1,5 @@
+<import src="/template/calendar/index.wxml"/>
+
 <view class="container">
   <view class="card">
           <view class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{pup.images[0]}}');">
@@ -19,38 +21,20 @@
           </view>
         </view>
   <view class="calendar-box">
-  <view class="calendar">
-  <view wx:if="{{date_error}}">
-    <text>Date is not available. Please select again.</text>
-  </view>
-  
-    <picker class="weui-btn" mode="date" value="{{start_date}}" start="{{today}}" end="2019-11-15" bindchange="bindStartDateChange">
-    <view wx:if="{{!start_date}}">
-      <button type="default">Select Start Date</button>
+    <view class="calendar-wrap">
+      <template is="calendar" data="{{...calendar}}" />
     </view>
-    <view wx:elif="{{start_date}}">
-      <button type="default">{{start_date_string}}</button>
-    </view>
-    </picker>
-  
-  <picker class="weui-btn" mode="date" value="{{start_date_string}}" start="{{start_date_string}}" end="2019-11-15" bindchange="bindEndDateChange">
-    <view wx:if="{{!end_date}}">
-      <button type="default">Select End Date</button>
-    </view>
-    <view wx:elif="{{start_date}}">
-      <button type="default">{{end_date_string}}</button>
-    </view>
-    </picker>
-  </view>
-    <view wx:if="{{total_cost}}" class="cost-box">
-      <text class="cost">Total cost: ${{total_cost}}</text>
-    </view>
-    <view wx:if="{{total_cost}}" class="submit-button">
+    <view class="submit-button">
+      <view class="cost-box">
+        <text class="description">Total cost:</text>
+        <text class="cost">${{total_cost}}</text>
+      </view>
       <view wx:if="{{!userInfo}}">
         <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Please Login</button>
       </view>
       <view wx:elif="{{userInfo}}">
-        <button type="primary" ontap="submitBooking">Submit Booking</button>
+        <view wx:if="{{validDates}}"><button type="primary" ontap="submitBooking">Submit Booking</button></view>
+        <view wx:elif="{{!validDates}}"><button type="primary" disabled="true" ontap="submitBooking">Submit Booking</button></view>
       </view>
       
     </view>
