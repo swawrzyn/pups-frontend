@@ -167,10 +167,10 @@ Page({
       wx.showModal({
         title: 'Accept or Reject',
         showCancel: true,
-        cancelText: 'reject',
-        cancelColor: 'black',
-        confirmText: 'accept',
-        confirmColor: 'green',
+        cancelText: 'Reject',
+        cancelColor: '#000000',
+        confirmText: 'Accept',
+        confirmColor: '#3CC51F',
         success: function (res) {
           if (res.confirm) {
             const booking = {}
