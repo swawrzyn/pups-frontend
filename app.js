@@ -1,6 +1,6 @@
 //app.js
 const AV = require('/utils/av-weapp-min.js')
-const config = require('/.lc-key')
+const config = require('/lc-key.js')
 // Initialization of the app
 
 AV.init({
